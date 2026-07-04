@@ -18,18 +18,26 @@
 </head>
 <body>
   <header class="site-header">
-    <div class="container site-header__inner">
+    <div class="site-header__inner">
       <a class="logo" href="#">whoax</a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">☰</button>
-      <nav class="nav" aria-label="Primary">
+      <nav class="nav--desktop" aria-label="Primary">
         <a href="#services">Expertise</a>
         <a href="#results">Results</a>
         <a href="#process">Process</a>
         <a href="#about">About</a>
-        <a class="btn btn--primary" href="mailto:hello@whoax.com">Get in touch</a>
       </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+      <a class="btn btn--primary btn--header" href="mailto:hello@whoax.com">Get in touch</a>
     </div>
   </header>
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <a href="#services">Expertise</a>
+    <a href="#results">Results</a>
+    <a href="#process">Process</a>
+    <a href="#about">About</a>
+    <a class="mobile-nav__cta" data-strategy-call href="mailto:hello@whoax.com">Book Strategy Call</a>
+  </nav>
 
   <main>
     <section class="hero" id="top">
@@ -41,7 +49,7 @@
           <a class="btn btn--primary" href="mailto:hello@whoax.com">Start a Project</a>
           <a class="btn btn--ghost" href="#results">See my Work</a>
         </div>
-        <p class="hero__trust"><span>✓</span> Limited to 4 active clients &nbsp;·&nbsp; <span>✓</span> WooCommerce &amp; Shopify &nbsp;·&nbsp; <span>✓</span> EU &amp; US brands</p>
+        <p class="hero__trust"><span class="check">✓</span> Limited to 4 active clients &nbsp;·&nbsp; <span class="check">✓</span> WooCommerce &amp; Shopify &nbsp;·&nbsp; <span class="check">✓</span> EU &amp; US brands</p>
       </div>
     </section>
 
@@ -103,7 +111,7 @@
               <p class="detail-row__desc">Full-funnel paid social that scales profitably — creative systems, audience architecture, and daily optimization built for DTC margins.</p>
               <ul><li>Campaign structure &amp; budget allocation</li><li>Creative testing frameworks (UGC, static, video)</li><li>Retargeting &amp; prospecting audience layers</li><li>MER/ROAS reporting tied to contribution margin</li></ul>
               <p class="detail-row__metric">3.8× – 5.4× typical ROAS</p>
-              <a class="btn btn--primary" href="mailto:hello@whoax.com" style="background:#6c3ce1;color:#fff;">Discuss this service →</a>
+              <a class="btn btn--purple" href="mailto:hello@whoax.com">Discuss this service →</a>
             </div>
           </article>
           <article class="detail-row detail-row--reverse">
@@ -114,7 +122,7 @@
               <p class="detail-row__desc">Shopping, Search, PMax, and feed optimization — turning product catalogs into predictable revenue engines.</p>
               <ul><li>Merchant Center feed audits &amp; enrichment</li><li>Performance Max &amp; Standard Shopping structure</li><li>Search intent mapping &amp; negative keyword hygiene</li><li>Product-level profitability tracking</li></ul>
               <p class="detail-row__metric">Up to 62% lower CPA on Shopping</p>
-              <a class="btn btn--primary" href="mailto:hello@whoax.com" style="background:#6c3ce1;color:#fff;">Discuss this service →</a>
+              <a class="btn btn--purple" href="mailto:hello@whoax.com">Discuss this service →</a>
             </div>
           </article>
           <article class="detail-row">
@@ -125,7 +133,7 @@
               <p class="detail-row__desc">High-converting Shopify builds and rebuilds — theme customization, app stack optimization, and checkout friction removal.</p>
               <ul><li>Custom theme sections &amp; landing pages</li><li>Checkout &amp; post-purchase upsell flows</li><li>App audit — remove bloat, add revenue apps</li><li>Internationalization &amp; multi-currency setup</li></ul>
               <p class="detail-row__metric">18–34% CVR lift on rebuilds</p>
-              <a class="btn btn--primary" href="mailto:hello@whoax.com" style="background:#6c3ce1;color:#fff;">Discuss this service →</a>
+              <a class="btn btn--purple" href="mailto:hello@whoax.com">Discuss this service →</a>
             </div>
           </article>
           <article class="detail-row detail-row--reverse">
@@ -136,7 +144,7 @@
               <p class="detail-row__desc">Fast, scalable WooCommerce stores with custom functionality — from catalog to fulfillment-ready architecture.</p>
               <ul><li>Custom plugin development &amp; API integrations</li><li>Payment gateway &amp; shipping rule optimization</li><li>B2B wholesale portals &amp; tiered pricing</li><li>Headless/hybrid architectures when needed</li></ul>
               <p class="detail-row__metric">Sub-2s load on optimized builds</p>
-              <a class="btn btn--primary" href="mailto:hello@whoax.com" style="background:#6c3ce1;color:#fff;">Discuss this service →</a>
+              <a class="btn btn--purple" href="mailto:hello@whoax.com">Discuss this service →</a>
             </div>
           </article>
           <article class="detail-row">
@@ -147,7 +155,7 @@
               <p class="detail-row__desc">Core Web Vitals, crawl optimization, and structured data — rank higher and convert more of the traffic you already have.</p>
               <ul><li>LCP/FID/CLS remediation &amp; monitoring</li><li>Schema markup &amp; indexation fixes</li><li>Content architecture &amp; internal linking</li><li>Log-file analysis &amp; cannibalization audits</li></ul>
               <p class="detail-row__metric">45% avg organic traffic increase</p>
-              <a class="btn btn--primary" href="mailto:hello@whoax.com" style="background:#6c3ce1;color:#fff;">Discuss this service →</a>
+              <a class="btn btn--purple" href="mailto:hello@whoax.com">Discuss this service →</a>
             </div>
           </article>
           <article class="detail-row detail-row--reverse">
@@ -158,7 +166,7 @@
               <p class="detail-row__desc">Data-driven conversion optimization — landing pages, A/B tests, and funnel architecture that turns clicks into customers.</p>
               <ul><li>High-converting landing page design</li><li>Heatmap &amp; session recording analysis</li><li>A/B testing roadmaps &amp; statistical rigor</li><li>Offer positioning &amp; social proof systems</li></ul>
               <p class="detail-row__metric">12–28% conversion rate improvements</p>
-              <a class="btn btn--primary" href="mailto:hello@whoax.com" style="background:#6c3ce1;color:#fff;">Discuss this service →</a>
+              <a class="btn btn--purple" href="mailto:hello@whoax.com">Discuss this service →</a>
             </div>
           </article>
           <article class="detail-row">
@@ -169,7 +177,7 @@
               <p class="detail-row__desc">Custom workflow automation connecting your entire stack — orders, inventory, support, and reporting on autopilot.</p>
               <ul><li>Order-to-fulfillment pipeline automation</li><li>Multi-channel inventory sync (Shopify/Woo/marketplaces)</li><li>Slack/email alerting &amp; exception handling</li><li>Scheduled reporting &amp; data warehouse feeds</li></ul>
               <p class="detail-row__metric">15–28 hours saved per week</p>
-              <a class="btn btn--primary" href="mailto:hello@whoax.com" style="background:#6c3ce1;color:#fff;">Discuss this service →</a>
+              <a class="btn btn--purple" href="mailto:hello@whoax.com">Discuss this service →</a>
             </div>
           </article>
           <article class="detail-row detail-row--reverse">
@@ -180,7 +188,7 @@
               <p class="detail-row__desc">Klaviyo and retention flows that maximize LTV — welcome series, abandoned cart, win-back, and post-purchase sequences.</p>
               <ul><li>Flow architecture &amp; segmentation strategy</li><li>Campaign calendar &amp; revenue attribution</li><li>SMS integration &amp; compliance setup</li><li>List growth &amp; deliverability optimization</li></ul>
               <p class="detail-row__metric">22–35% email revenue share of total</p>
-              <a class="btn btn--primary" href="mailto:hello@whoax.com" style="background:#6c3ce1;color:#fff;">Discuss this service →</a>
+              <a class="btn btn--purple" href="mailto:hello@whoax.com">Discuss this service →</a>
             </div>
           </article>
           <article class="detail-row">
@@ -191,7 +199,7 @@
               <p class="detail-row__desc">Production-grade hosting on Google Cloud and Azure — auto-scaling, CI/CD, monitoring, and zero-downtime deployments.</p>
               <ul><li>Kubernetes &amp; container orchestration</li><li>CDN, caching, and edge optimization</li><li>Database scaling &amp; backup strategies</li><li>Uptime monitoring &amp; incident response</li></ul>
               <p class="detail-row__metric">99.95% uptime on managed stacks</p>
-              <a class="btn btn--primary" href="mailto:hello@whoax.com" style="background:#6c3ce1;color:#fff;">Discuss this service →</a>
+              <a class="btn btn--purple" href="mailto:hello@whoax.com">Discuss this service →</a>
             </div>
           </article>
         </div>
@@ -335,14 +343,14 @@
           </div>
           <div class="skills-grid">
             <ul>
-              <li>Profitable paid-ads (Meta + Google + TikTok)</li>
-              <li>Core Web Vitals &amp; technical SEO</li>
-              <li>Klaviyo email/SMS retention</li>
+              <li><span class="check">✓</span> Profitable paid-ads (Meta + Google + TikTok)</li>
+              <li><span class="check">✓</span> Core Web Vitals &amp; technical SEO</li>
+              <li><span class="check">✓</span> Klaviyo email/SMS retention</li>
             </ul>
             <ul>
-              <li>WooCommerce/Shopify builds + CRO</li>
-              <li>n8n automation + AI agents</li>
-              <li>GCP/Azure cloud infrastructure</li>
+              <li><span class="check">✓</span> WooCommerce/Shopify builds + CRO</li>
+              <li><span class="check">✓</span> n8n automation + AI agents</li>
+              <li><span class="check">✓</span> GCP/Azure cloud infrastructure</li>
             </ul>
           </div>
           <div class="about__actions">
@@ -358,7 +366,7 @@
       <div class="container">
         <h2 class="cta__title">Ready to build something that compounds?</h2>
         <p class="cta__lead">I take on a limited number of clients each quarter. If you're serious about scaling profitably, let's have a direct conversation.</p>
-        <a class="btn btn--primary" href="mailto:hello@whoax.com">Book a 30-Minute Strategy Call</a>
+        <a class="btn btn--primary" data-strategy-call href="mailto:hello@whoax.com">Book a 30-Minute Strategy Call</a>
         <a class="cta__email" href="mailto:hello@whoax.com">hello@whoax.com</a>
       </div>
     </section>
@@ -370,6 +378,10 @@
       <p><a href="mailto:hello@whoax.com">hello@whoax.com</a> · <a href="https://www.linkedin.com/in/reda-alaarabi-b47602359/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="https://github.com/Ai-assistant-KIRA" target="_blank" rel="noopener noreferrer">GitHub</a></p>
     </div>
   </footer>
+
+  <div class="sticky-cta" id="sticky-cta">
+    <a data-strategy-call href="mailto:hello@whoax.com">Book Strategy Call</a>
+  </div>
 
   <script src="js/main.js" defer></script>
 </body>
