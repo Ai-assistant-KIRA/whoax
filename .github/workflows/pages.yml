@@ -22,8 +22,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: npm
-      - run: npm ci
+      # TODO: switch back to `npm ci` + npm caching once the regenerated
+      # package-lock.json is committed.
+      - run: npm install
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
