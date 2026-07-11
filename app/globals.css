@@ -1,19 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap");
+/* General Sans is not on Google Fonts; served from Fontshare.
+   Swap to next/font/local once the licensed font files are added to the repo. */
+@import url("https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap");
+
 @import "tailwindcss";
 
-:root {
-  --color-bg: #0a0a0a;
-  --color-fg: #f4f4f5;
-  --color-muted: #a1a1aa;
-  --color-accent: #e8ff47;
-  --color-border: #27272a;
-  --color-surface: #141414;
-  --font-display: "Syne", system-ui, sans-serif;
-  --font-body: "IBM Plex Sans", system-ui, sans-serif;
-}
+@theme {
+  --color-void: #0b0b0d;
+  --color-panel: #17171b;
+  --color-voxel: #9a9ea6;
+  --color-paper: #ededef;
+  --color-muted: #6f7278;
+  --color-signal: #ff5a1f;
 
-* {
-  box-sizing: border-box;
+  --font-display: var(--font-unbounded), ui-sans-serif, sans-serif;
+  --font-body: "General Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 }
 
 html {
@@ -27,73 +28,41 @@ html {
 }
 
 body {
-  margin: 0;
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font-family: var(--font-body);
-  line-height: 1.55;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
+  background-color: var(--color-void);
+  color: var(--color-paper);
 }
 
-h1, h2, h3 {
-  font-family: var(--font-display);
-  letter-spacing: -0.03em;
-  line-height: 0.95;
+::selection {
+  background-color: var(--color-signal);
+  color: var(--color-void);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-signal);
   outline-offset: 3px;
+  border-radius: 2px;
 }
 
-.container {
-  width: min(1280px, calc(100% - 2.5rem));
-  margin-inline: auto;
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-panel);
+  color: var(--color-paper);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
 }
 
-.display-xl {
-  font-size: clamp(2.75rem, 9vw, 6.5rem);
-  font-weight: 800;
-  text-transform: uppercase;
+.skip-link:focus {
+  top: 1rem;
 }
 
-.chapter-num {
-  font-size: clamp(5rem, 18vw, 14rem);
-  font-weight: 800;
-  color: var(--color-accent);
-  opacity: 0.15;
-  line-height: 1;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.875rem 1.75rem;
-  border: 2px solid var(--color-fg);
-  background: transparent;
-  color: var(--color-fg);
-  font-weight: 600;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  cursor: pointer;
-  transition: background 120ms ease, color 120ms ease;
-}
-
-.btn:hover {
-  background: var(--color-accent);
-  color: #000;
-  border-color: var(--color-accent);
-}
-
-.btn-accent {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-}
-
-.btn-accent:hover {
-  background: var(--color-accent);
-  color: #000;
+/* Halftone matrix — used exactly twice after the hero:
+   1. the Hero→Manifesto transition
+   2. the Capabilities hover/tap tool reveal */
+.halftone {
+  background-image: radial-gradient(circle, var(--color-voxel) 1px, transparent 1.4px);
+  background-size: 9px 9px;
 }
