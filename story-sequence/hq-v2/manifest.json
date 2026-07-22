@@ -1,0 +1,16 @@
+{
+  "version": "hq-v2",
+  "count": 237,
+  "dimensions": { "width": 1920, "height": 1080 },
+  "encoder": {
+    "codec": "libwebp",
+    "preset": "picture",
+    "compressionLevel": 6,
+    "quality": 98
+  },
+  "poster": {
+    "path": "/story-sequence/poster-hq-v2.webp",
+    "sourceImage": 19
+  },
+  "filename": "frame-%04d.webp"
+}

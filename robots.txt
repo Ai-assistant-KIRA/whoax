@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://whoax.com
+Sitemap: https://whoax.com/sitemap.xml
