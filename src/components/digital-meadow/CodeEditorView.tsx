@@ -283,15 +283,15 @@ export default function CodeEditorView({
 
             {/* Terminal Metadata / Spec Block */}
             {hasMeta && (
-              <div className="my-2.5 p-3 border border-[#374145] bg-[#14181a] font-mono text-[12px] sm:text-[13px] leading-relaxed space-y-1">
+              <div className="my-2.5 p-3 border border-[#374145] bg-[#14181a] font-mono text-[12px] sm:text-[13px] leading-relaxed space-y-1.5 overflow-hidden">
                 <div className="text-[11px] text-[#839e9a] pb-1 mb-1 border-b border-[#2b3337] flex items-center justify-between select-none">
                   <span>// FILE_SPECIFICATIONS</span>
                   <span className="text-[#cbe3b3]">SYSINFO</span>
                 </div>
                 {file.meta?.impact && (
-                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-1">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 min-w-0">
                     <span className="text-[#839e9a] w-[95px] shrink-0 font-bold">impact    ::</span>
-                    <span className="text-[#f8f9e8]">
+                    <span className="text-[#f8f9e8] min-w-0 break-words flex-1">
                       <TextWaveReveal triggerKey={file.id} delay={60}>
                         {file.meta.impact}
                       </TextWaveReveal>
@@ -299,9 +299,9 @@ export default function CodeEditorView({
                   </div>
                 )}
                 {file.meta?.telephony && (
-                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-1">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 min-w-0">
                     <span className="text-[#839e9a] w-[95px] shrink-0 font-bold">telephony ::</span>
-                    <span className="text-[#cbe3b3]">
+                    <span className="text-[#cbe3b3] min-w-0 break-words flex-1">
                       <TextWaveReveal triggerKey={file.id} delay={70}>
                         {file.meta.telephony}
                       </TextWaveReveal>
@@ -309,9 +309,9 @@ export default function CodeEditorView({
                   </div>
                 )}
                 {file.meta?.latency && (
-                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-1">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 min-w-0">
                     <span className="text-[#839e9a] w-[95px] shrink-0 font-bold">latency   ::</span>
-                    <span className="text-[#f8f9e8] font-bold">
+                    <span className="text-[#f8f9e8] font-bold min-w-0 break-words flex-1">
                       <TextWaveReveal triggerKey={file.id} delay={80}>
                         {file.meta.latency}
                       </TextWaveReveal>
@@ -319,9 +319,9 @@ export default function CodeEditorView({
                   </div>
                 )}
                 {file.meta?.timeline && (
-                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-1">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 min-w-0">
                     <span className="text-[#839e9a] w-[95px] shrink-0 font-bold">timeline  ::</span>
-                    <span className="text-[#adc9bc]">
+                    <span className="text-[#adc9bc] min-w-0 break-words flex-1">
                       <TextWaveReveal triggerKey={file.id} delay={90}>
                         {file.meta.timeline}
                       </TextWaveReveal>
@@ -329,9 +329,9 @@ export default function CodeEditorView({
                   </div>
                 )}
                 {file.meta?.stack && (
-                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-1">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 min-w-0">
                     <span className="text-[#839e9a] w-[95px] shrink-0 font-bold">stack     ::</span>
-                    <span className="text-[#adc9bc]">
+                    <span className="text-[#adc9bc] min-w-0 break-words flex-1">
                       <TextWaveReveal triggerKey={file.id} delay={100}>
                         {file.meta.stack.join(" · ")}
                       </TextWaveReveal>
