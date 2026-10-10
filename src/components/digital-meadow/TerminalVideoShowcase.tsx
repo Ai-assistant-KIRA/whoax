@@ -6,7 +6,8 @@ import {
   Pause, 
   Volume2, 
   VolumeX, 
-  Maximize, 
+  Maximize,
+  Minimize, 
   RotateCcw,
   Sparkles,
   ShieldCheck,
@@ -48,6 +49,7 @@ export default function TerminalVideoShowcase({
 }: TerminalVideoShowcaseProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const videoWrapperRef = useRef<HTMLDivElement>(null);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -55,6 +57,7 @@ export default function TerminalVideoShowcase({
   const [duration, setDuration] = useState(durationSec);
   const [activeChapterIndex, setActiveChapterIndex] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Update time and active chapter
   const handleTimeUpdate = useCallback(() => {
@@ -125,12 +128,204 @@ export default function TerminalVideoShowcase({
     setCurrentTime(time);
   };
 
-  const toggleFullscreen = () => {
-    if (!containerRef.current) return;
-    if (document.fullscreenElement) {
-      document.exitFullscreen();
-    } else {
-      containerRef.current.requestFullscreen().catch(() => {});
+  // Screen Orientation helpers (YouTube-style auto-rotation to landscape)
+  const lockLandscape = useCallback(async () => {
+    if (typeof window === "undefined" || !window.screen) return;
+    try {
+      const orientation = window.screen.orientation as any;
+      if (orientation && typeof orientation.lock === "function") {
+        await orientation.lock("landscape");
+      } else if ((window.screen as any).lockOrientation) {
+        (window.screen as any).lockOrientation("landscape");
+      } else if ((window.screen as any).mozLockOrientation) {
+        (window.screen as any).mozLockOrientation("landscape");
+      } else if ((window.screen as any).msLockOrientation) {
+        (window.screen as any).msLockOrientation("landscape");
+      }
+    } catch (err) {
+      console.debug("Landscape orientation lock not supported on this device:", err);
+    }
+  }, []);
+
+  const unlockOrientation = useCallback(() => {
+    if (typeof window === "undefined" || !window.screen) return;
+    try {
+      const orientation = window.screen.orientation as any;
+      if (orientation && typeof orientation.unlock === "function") {
+        orientation.unlock();
+      } else if ((window.screen as any).unlockOrientation) {
+        (window.screen as any).unlockOrientation();
+      } else if ((window.screen as any).mozUnlockOrientation) {
+        (window.screen as any).mozUnlockOrientation();
+      } else if ((window.screen as any).msUnlockOrientation) {
+        (window.screen as any).msUnlockOrientation();
+      }
+    } catch (err) {
+      console.debug("Orientation unlock:", err);
+    }
+  }, []);
+
+  // Listen to fullscreen changes across all mobile & desktop browser engines
+  useEffect(() => {
+    const checkIsFs = () => {
+      if (typeof document === "undefined") return false;
+      const doc = document as any;
+      const vid = videoRef.current as any;
+      return !!(
+        doc.fullscreenElement ||
+        doc.webkitFullscreenElement ||
+        doc.mozFullScreenElement ||
+        doc.msFullscreenElement ||
+        vid?.webkitDisplayingFullscreen
+      );
+    };
+
+    const handleFsChange = () => {
+      const isFs = checkIsFs();
+      setIsFullscreen(isFs);
+      if (!isFs) {
+        unlockOrientation();
+      }
+    };
+
+    const doc = document as any;
+    doc.addEventListener("fullscreenchange", handleFsChange);
+    doc.addEventListener("webkitfullscreenchange", handleFsChange);
+    doc.addEventListener("mozfullscreenchange", handleFsChange);
+    doc.addEventListener("MSFullscreenChange", handleFsChange);
+
+    const video = videoRef.current as any;
+    const handleWebKitBegin = () => setIsFullscreen(true);
+    const handleWebKitEnd = () => {
+      setIsFullscreen(false);
+      unlockOrientation();
+    };
+
+    if (video) {
+      video.addEventListener("webkitbeginfullscreen", handleWebKitBegin);
+      video.addEventListener("webkitendfullscreen", handleWebKitEnd);
+    }
+
+    return () => {
+      doc.removeEventListener("fullscreenchange", handleFsChange);
+      doc.removeEventListener("webkitfullscreenchange", handleFsChange);
+      doc.removeEventListener("mozfullscreenchange", handleFsChange);
+      doc.removeEventListener("MSFullscreenChange", handleFsChange);
+      if (video) {
+        video.removeEventListener("webkitbeginfullscreen", handleWebKitBegin);
+        video.removeEventListener("webkitendfullscreen", handleWebKitEnd);
+      }
+    };
+  }, [unlockOrientation]);
+
+  const toggleFullscreen = async () => {
+    const video = videoRef.current as any;
+    const wrapper = videoWrapperRef.current as any;
+    const doc = document as any;
+
+    const isCurrentlyFs =
+      isFullscreen ||
+      !!(
+        doc.fullscreenElement ||
+        doc.webkitFullscreenElement ||
+        doc.mozFullScreenElement ||
+        doc.msFullscreenElement ||
+        video?.webkitDisplayingFullscreen
+      );
+
+    if (isCurrentlyFs) {
+      unlockOrientation();
+      if (doc.exitFullscreen) {
+        doc.exitFullscreen().catch(() => {});
+      } else if (doc.webkitExitFullscreen) {
+        doc.webkitExitFullscreen();
+      } else if (doc.mozCancelFullScreen) {
+        doc.mozCancelFullScreen();
+      } else if (doc.msExitFullscreen) {
+        doc.msExitFullscreen();
+      } else if (video && typeof video.webkitExitFullscreen === "function") {
+        video.webkitExitFullscreen();
+      }
+      setIsFullscreen(false);
+      return;
+    }
+
+    // Ensure playback has started so user doesn't enter fullscreen on a black frame
+    if (video && video.paused) {
+      try {
+        await video.play();
+        setIsPlaying(true);
+        setHasStarted(true);
+      } catch (err) {
+        if (video) {
+          video.muted = true;
+          setIsMuted(true);
+          try {
+            await video.play();
+            setIsPlaying(true);
+            setHasStarted(true);
+          } catch (err2) {}
+        }
+      }
+    }
+
+    // 1. iOS Safari (iPhone) detection: strictly requires webkitEnterFullscreen on the HTMLVideoElement
+    const isIPhone =
+      typeof navigator !== "undefined" &&
+      (/iPhone|iPod/i.test(navigator.userAgent) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1 && !(window as any).MSStream));
+
+    if (isIPhone && video && typeof video.webkitEnterFullscreen === "function") {
+      try {
+        video.webkitEnterFullscreen();
+        setIsFullscreen(true);
+        return;
+      } catch (e) {
+        console.warn("webkitEnterFullscreen error:", e);
+      }
+    }
+
+    // 2. Element fullscreen on video screen wrapper (Android Chrome, iPad, Desktop)
+    const target = wrapper || video || containerRef.current;
+    if (target) {
+      const requestMethod =
+        target.requestFullscreen ||
+        target.webkitRequestFullscreen ||
+        target.mozRequestFullScreen ||
+        target.msRequestFullscreen;
+
+      if (requestMethod) {
+        try {
+          const res = requestMethod.call(target);
+          if (res && typeof res.then === "function") {
+            await res;
+          }
+          setIsFullscreen(true);
+          // YouTube-style auto-rotation to landscape
+          await lockLandscape();
+          return;
+        } catch (e) {
+          console.warn("Element requestFullscreen failed, attempting video element fallback:", e);
+        }
+      }
+    }
+
+    // 3. Fallback to video element directly
+    if (video) {
+      if (typeof video.webkitEnterFullscreen === "function") {
+        try {
+          video.webkitEnterFullscreen();
+          setIsFullscreen(true);
+          return;
+        } catch (e) {}
+      } else if (video.requestFullscreen) {
+        try {
+          await video.requestFullscreen();
+          setIsFullscreen(true);
+          await lockLandscape();
+          return;
+        } catch (e) {}
+      }
     }
   };
 
@@ -154,7 +349,12 @@ export default function TerminalVideoShowcase({
           <div className="flex items-center gap-1.5 shrink-0">
             <span className="w-2.5 h-2.5 rounded-full bg-[#f57f82] inline-block" />
             <span className="w-2.5 h-2.5 rounded-full bg-[#f5d098] inline-block" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#cbe3b3] inline-block" />
+            <button
+              onClick={toggleFullscreen}
+              className="w-2.5 h-2.5 rounded-full bg-[#cbe3b3] inline-block cursor-pointer hover:opacity-80 transition-opacity"
+              aria-label="Expand fullscreen"
+              title="Expand fullscreen (Auto-rotate to landscape)"
+            />
           </div>
 
           <span className="text-[#839e9a] font-bold select-none ml-1 hidden sm:inline">
@@ -190,7 +390,14 @@ export default function TerminalVideoShowcase({
       </div>
 
       {/* Main Video Screen Container */}
-      <div className="relative aspect-video w-full bg-[#0a0d0e] group overflow-hidden select-none">
+      <div
+        ref={videoWrapperRef}
+        className={`relative w-full bg-[#0a0d0e] group overflow-hidden select-none transition-all ${
+          isFullscreen
+            ? "fixed inset-0 z-50 w-screen h-screen max-w-none max-h-none flex items-center justify-center bg-black !aspect-auto"
+            : "aspect-video"
+        }`}
+      >
         <video
           ref={videoRef}
           src={src}
@@ -201,7 +408,9 @@ export default function TerminalVideoShowcase({
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
           onClick={togglePlay}
-          className="w-full h-full object-contain cursor-pointer"
+          className={`w-full h-full cursor-pointer transition-all ${
+            isFullscreen ? "object-contain max-h-screen max-w-screen" : "object-contain"
+          }`}
         />
 
         {/* Center Play Overlay when paused */}
@@ -236,7 +445,12 @@ export default function TerminalVideoShowcase({
         />
 
         {/* Floating Mini Controls Bar (appears on hover or when playing) */}
-        <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 via-black/60 to-transparent flex flex-col gap-2 opacity-95 group-hover:opacity-100 transition-opacity">
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className={`absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/95 via-black/70 to-transparent flex flex-col gap-2 transition-opacity z-20 ${
+            isFullscreen ? "pb-6 sm:pb-8 px-4 sm:px-10 bg-black/85" : "opacity-95 group-hover:opacity-100"
+          }`}
+        >
           {/* Seek Bar */}
           <div className="relative w-full flex items-center">
             <input
@@ -255,7 +469,7 @@ export default function TerminalVideoShowcase({
             <div className="flex items-center gap-3">
               <button
                 onClick={togglePlay}
-                className="text-[#f8f9e8] hover:text-[#cbe3b3] transition-colors cursor-pointer"
+                className="text-[#f8f9e8] hover:text-[#cbe3b3] transition-colors cursor-pointer p-1 -m-1"
                 aria-label={isPlaying ? "Pause" : "Play"}
               >
                 {isPlaying ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current" />}
@@ -263,7 +477,7 @@ export default function TerminalVideoShowcase({
 
               <button
                 onClick={toggleMute}
-                className="text-[#adc9bc] hover:text-[#f8f9e8] transition-colors cursor-pointer"
+                className="text-[#adc9bc] hover:text-[#f8f9e8] transition-colors cursor-pointer p-1 -m-1"
                 aria-label={isMuted ? "Unmute" : "Mute"}
               >
                 {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
@@ -275,17 +489,21 @@ export default function TerminalVideoShowcase({
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="text-[11px] text-[#cbe3b3] font-bold hidden sm:inline">
+              <span className={`text-[11px] text-[#cbe3b3] font-bold ${isFullscreen ? "inline text-[10px]" : "hidden sm:inline"}`}>
                 {CHAPTERS[activeChapterIndex]?.label}
               </span>
 
               <button
                 onClick={toggleFullscreen}
-                className="text-[#adc9bc] hover:text-[#f8f9e8] transition-colors cursor-pointer"
-                aria-label="Fullscreen"
-                title="Fullscreen"
+                className="p-1 sm:p-1.5 -m-1 text-[#adc9bc] hover:text-[#f8f9e8] transition-colors cursor-pointer flex items-center justify-center touch-manipulation"
+                aria-label={isFullscreen ? "Exit Fullscreen" : "Expand Video"}
+                title={isFullscreen ? "Exit Fullscreen" : "Expand Video (Auto-rotate to landscape)"}
               >
-                <Maximize className="w-4 h-4" />
+                {isFullscreen ? (
+                  <Minimize className="w-4 h-4 text-[#cbe3b3]" />
+                ) : (
+                  <Maximize className="w-4 h-4" />
+                )}
               </button>
             </div>
           </div>
