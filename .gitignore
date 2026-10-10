@@ -48,10 +48,7 @@ next-env.d.ts
 /scripts/
 /portfolio-intro/
 *.pdf
-*.mp4
 *.html
 copy-rewrite-plan.md
-src/components/digital-meadow/VoiceAudioPreview.tsx
-src/components/digital-meadow/TerminalVideoShowcase.tsx
-src/components/digital-meadow/CyberMeadow3D.tsx
+
 
