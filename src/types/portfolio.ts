@@ -5,7 +5,7 @@ export interface PortfolioFile {
   name: string;
   path: string;
   icon: string;
-  category: "about" | "capabilities" | "projects" | "field-studies" | "root";
+  category: "about" | "capabilities" | "voice-agents" | "projects" | "field-studies" | "root";
   title: string;
   subtitle?: string;
   lastUpdated?: string;
@@ -20,6 +20,18 @@ export interface PortfolioFile {
     liveUrl?: string;
     payrollSaved?: string;
     rolesReplaced?: string;
+    latency?: string;
+    telephony?: string;
+    audioSample?: {
+      callerText: string;
+      agentText: string;
+      durationSec: number;
+    };
+    videoPreview?: {
+      src: string;
+      title: string;
+      durationSec: number;
+    };
   };
 }
 

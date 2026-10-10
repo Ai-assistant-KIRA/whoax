@@ -38,16 +38,21 @@ const generalSans = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://whoax.com"),
-  title: "Reda Alaarabi — AI-First eCommerce Growth Engineer",
+  referrer: "strict-origin-when-cross-origin",
+  title: "Reda Alaarabi · Senior Web & Systems Engineer | Websites, Apps & Voice Systems",
   description:
-    "AI-first eCommerce growth engineering — Shopify & WooCommerce builds, performance media, and automation that turn five-week builds into ten-day sprints.",
+    "Senior engineer building $10K-grade agency websites, custom web apps, Shopify & WooCommerce plugins, automated voice support agents, and growth infrastructure for businesses across all industries.",
   openGraph: {
-    title: "Reda Alaarabi — AI-First eCommerce Growth Engineer",
+    title: "Reda Alaarabi · Senior Web & Systems Engineer",
     description:
-      "AI-first eCommerce growth engineering — Shopify & WooCommerce builds, performance media, and automation for DTC brands.",
+      "$10K-grade agency websites, custom web applications, eCommerce plugins, AI voice agents, and cloud systems engineered for real business revenue.",
     url: "https://whoax.com",
-    siteName: "Reda Alaarabi",
+    siteName: "Reda Alaarabi · whoax.com",
     type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -65,6 +70,10 @@ export default function RootLayout({
       lang="en"
       className={cn("dark h-full antialiased font-sans", unbounded.variable, plexMono.variable, generalSans.variable, geist.variable)}
     >
+      <head>
+        <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+      </head>
       <body className="min-h-full">
         <a
           href="#main"
