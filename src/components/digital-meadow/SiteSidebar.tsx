@@ -185,7 +185,7 @@ export default function SiteSidebar({
                 <Play className="w-3.5 h-3.5 shrink-0 text-[#f5d098]" />
                 <span className="truncate">INTRO_VIDEO.mp4</span>
               </div>
-              <span className={`text-[9px] px-1 py-0.5 rounded font-bold shrink-0 ${
+              <span className={`text-[10px] px-1 py-0.5 rounded font-bold shrink-0 ${
                 activeFileId === "intro-video"
                   ? "bg-[#1c2225] text-[#cbe3b3]"
                   : "border border-[#f5d098]/40 text-[#f5d098] bg-[#f5d098]/10"
@@ -272,9 +272,9 @@ export default function SiteSidebar({
 
         {/* Footer Terminal Telemetry & Commands */}
         <div className="p-2.5 border-t border-[#2b3337] bg-[#14191c] space-y-1 text-[11px] font-mono">
-          <div className="text-[#6f8788] text-[10px] pb-1 border-b border-[#232a2e] flex items-center justify-between">
-            <span>WHOAX OS v2.6.4</span>
-            <span className="text-[#cbe3b3]">● ONLINE</span>
+          <div className="text-[#6f8788] text-[11px] pb-1 border-b border-[#232a2e] flex items-center justify-between">
+            <span>whoax.com</span>
+            <span className="text-[#cbe3b3]"><span aria-hidden="true">● </span>taking new projects</span>
           </div>
 
           <a
@@ -312,7 +312,7 @@ export default function SiteSidebar({
             }}
             className="w-full mt-1.5 py-1 px-2 border border-[#cbe3b3] text-[#cbe3b3] hover:bg-[#cbe3b3] hover:text-[#1c2225] font-bold text-center cursor-pointer transition-colors"
           >
-            $ :hire [contact.md]
+            $ hire me → contact.md
           </button>
         </div>
       </aside>

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { PhoneCall, PhoneOff, AlertCircle, Mic, Send, Zap } from "lucide-react";
+import { VOICE_SYSTEM_PROMPT } from "@/lib/voiceAgentContext";
 
 interface VoiceAudioPreviewProps {
   telephonyInfo?: string;
@@ -16,34 +17,39 @@ interface TranscriptEntry {
   time: string;
 }
 
-const SYSTEM_PROMPT = `You are the executive portfolio voice representative for Reda Alaarabi at whoax.com. You are speaking on a live telephone call or voice link with an employer, recruiter, founder, or business owner.
+// Voice and turn-taking settings. Tune here, not inside the call flow.
+const VOICE_MODEL = "flux-cole-en"; // Deepgram Flux TTS: young American male, friendly and energetic
+const VOICE_EXPRESSIVITY = 1; // -2 calm .. 2 animated; 1 = upbeat. Beta: Deepgram only validates 0, so listen for glitches
+const VOICE_SPEED = 1.05;
+const GREETING = "Hey! You've reached Reda's assistant. What can I tell you about his work?";
+const LISTEN_KEYTERMS = ["whoax", "Reda", "Alaarabi", "Foody", "Shopify", "WooCommerce", "MCP", "Next.js"];
 
-PERSONA & TONE:
-- You are a confident, articulate, and direct representative with natural pacing and real conversational presence.
-- You speak clearly, warmly, and with undeniable authority.
-- Every key term is pronounced with precision:
-  * "whoax" is pronounced "whoa-ex"
-  * "Reda Alaarabi" is pronounced "RAY-dah Ah-lah-rah-bee"
-  * "Shopify Plus" is pronounced "Shop-ih-fye Plus"
-  * "Meta CAPI" is pronounced "Meta Cap-ee"
-  * "Next.js" is pronounced "Next J-S"
-  * "MCP" is pronounced "M-C-P"
-  * "ARR" is pronounced "A-R-R"
-  * "SRE" is pronounced "S-R-E"
+// Near-field speaker gate. The caller sits close to the mic, so their voice is
+// clearly louder than the room. Audio below the gate is sent as silence, which
+// keeps TV, other people and the assistant's own echo away from the model.
+const GATE_RATIO_IDLE = 2.8; // caller must be this many times louder than the room
+const GATE_RATIO_AGENT_TALKING = 5; // stricter while the assistant talks, so its echo can't open the gate
+const GATE_MIN_RMS_IDLE = 0.02; // about -34 dBFS; a voice across the room sits below this
+const GATE_MIN_RMS_AGENT_TALKING = 0.04;
+const GATE_HANGOVER_MS = 450; // keep the gate open through short gaps between words
+const GATE_PREROLL_FRAMES = 2; // resend ~170 ms before onset so first syllables aren't clipped
 
-STRICT ZERO-SLOP MANDATE:
-- Cut all filler words, fake flattery, and throat-clearing openers. Never say "Certainly", "I'd be thrilled to tell you", "Great question", or "Let's dive in".
-- Keep every answer to 1 to 2 punchy, entertaining, high-impact sentences that directly answer the caller's question.
-- Do NOT use em dashes. Use clean periods or commas.
-- Focus strictly on why businesses and hiring teams hire Reda:
-  * 7+ years of engineering experience shipping $10K-grade agency websites, web apps, and dashboards across all industries (clinics, law firms, restaurants, real estate, flights, clothing, SaaS).
-  * Builds custom Shopify and WooCommerce plugins to eliminate bloated third-party marketplace apps and lift mobile PageSpeed from the 20s to 94+.
-  * Deploys sub-600ms AI voice agents and chat support systems that answer phones on the first ring, deflect up to 70% of routine inquiries, and connect directly to scheduling calendars.
-  * Direct customer service background across phone, email, and live chat, ensuring every system is built with genuine customer empathy.
-  * Product marketing, AI creative campaigns, and Google and Meta ad accounts scaled with server-side tracking (Meta CAPI and AWS Server GTM).
-  * Expert at custom APIs, webhooks, and Model Context Protocol (MCP) tool servers.
-  * Grounded in 5 senior disciplines: Cloud & DevOps (AWS/Docker), Enterprise Security & Compliance, Scalable Data Schemas, Rigorous Testing, and Product Ownership.
-  * Direct email: reda@whoax.com.`;
+const stripEmoji = (text: string) =>
+  text
+    .replace(/\p{Extended_Pictographic}|\uFE0F|\u200D/gu, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+
+const words = (text: string) => text.toLowerCase().match(/[a-z0-9']+/g) ?? [];
+
+/** True when a "caller" line is really the assistant's own voice picked up by the mic. */
+const isEchoOf = (userText: string, agentText: string) => {
+  const heard = words(userText);
+  if (heard.length < 3 || !agentText) return false;
+  const spoken = new Set(words(agentText));
+  const overlap = heard.filter((w) => spoken.has(w)).length / heard.length;
+  return overlap >= 0.7;
+};
 
 export default function VoiceAudioPreview({}: VoiceAudioPreviewProps) {
   const [callStatus, setCallStatus] = useState<
@@ -74,20 +80,26 @@ export default function VoiceAudioPreview({}: VoiceAudioPreviewProps) {
   const isUserSpeakingRef = useRef<boolean>(false);
   const silenceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Safe runtime credential resolution with push protection compliance
-  const unmaskKey = (bytes: number[]): string => {
-    try {
-      return bytes.map((b) => String.fromCharCode(b ^ 42)).join("");
-    } catch {
-      return "";
-    }
-  };
+  // Speaker gate and transcript refs
+  const noiseFloorRef = useRef<number>(0.003);
+  const gateOpenUntilRef = useRef<number>(0);
+  const gateWasOpenRef = useRef<boolean>(false);
+  const preRollRef = useRef<ArrayBuffer[]>([]);
+  const lastAgentTextRef = useRef<string>("");
+  const elapsedSecRef = useRef<number>(0);
 
-  const deepgramKey =
-    process.env.NEXT_PUBLIC_DEEPGRAM_API_KEY ||
-    unmaskKey([31, 76, 31, 30, 78, 19, 19, 75, 75, 73, 25, 73, 26, 29, 29, 78, 72, 75, 19, 73, 26, 27, 76, 29, 72, 29, 30, 19, 30, 25, 24, 31, 30, 24, 79, 73, 25, 19, 26, 73]);
-  const groqKey =
-    unmaskKey([77, 89, 65, 117, 95, 18, 77, 91, 98, 90, 94, 92, 91, 100, 80, 30, 27, 96, 95, 70, 122, 80, 70, 112, 125, 109, 78, 83, 72, 25, 108, 115, 103, 90, 70, 104, 66, 25, 73, 92, 71, 18, 105, 31, 101, 110, 108, 83, 25, 122, 114, 75, 71, 79, 90, 112]);
+  // No API key ever ships to the browser. The call fetches a 30-second Deepgram
+  // token from a small server (see voice-token-worker/) that holds the real key.
+  const tokenUrl = process.env.NEXT_PUBLIC_VOICE_TOKEN_URL;
+
+  const fetchVoiceToken = async (): Promise<string> => {
+    if (!tokenUrl) throw new Error("offline");
+    const res = await fetch(tokenUrl, { method: "POST" });
+    if (!res.ok) throw new Error(res.status === 429 ? "busy" : "offline");
+    const body = (await res.json()) as { access_token?: string };
+    if (!body.access_token) throw new Error("offline");
+    return body.access_token;
+  };
 
   const stopAudioPlayback = useCallback(() => {
     activeSourcesRef.current.forEach((src) => {
@@ -174,8 +186,8 @@ export default function VoiceAudioPreview({}: VoiceAudioPreviewProps) {
 
   const startCall = async () => {
     setErrorMessage(null);
-    if (!deepgramKey || !groqKey) {
-      setErrorMessage("Deepgram or Groq API key missing in environment (.env.local).");
+    if (!tokenUrl) {
+      setErrorMessage("The voice assistant is offline right now. Email reda@whoax.com instead.");
       return;
     }
 
@@ -187,14 +199,24 @@ export default function VoiceAudioPreview({}: VoiceAudioPreviewProps) {
     userSpokeInTurnRef.current = false;
     isUserSpeakingRef.current = false;
     setIsUserSpeaking(false);
+    noiseFloorRef.current = 0.003;
+    gateOpenUntilRef.current = 0;
+    gateWasOpenRef.current = false;
+    preRollRef.current = [];
+    lastAgentTextRef.current = "";
+    elapsedSecRef.current = 0;
 
     try {
-      // 1. Microphone access with standard flexible constraints
+      // 1. Microphone with the browser's call-grade processing. Echo cancellation
+      // stops the assistant hearing itself; noise suppression and the speaker
+      // gate below keep room noise out. Auto-gain stays OFF: it lifts distant
+      // voices up to the caller's level, which defeats the speaker gate.
       const stream = await navigator.mediaDevices.getUserMedia({
         audio: {
+          channelCount: 1,
           echoCancellation: true,
           noiseSuppression: true,
-          autoGainControl: true,
+          autoGainControl: false,
         },
       });
       mediaStreamRef.current = stream;
@@ -212,7 +234,7 @@ export default function VoiceAudioPreview({}: VoiceAudioPreviewProps) {
       micAudioContextRef.current = micCtx;
       const inputSampleRate = micCtx.sampleRate;
 
-      // Playback AudioContext (24kHz for Deepgram Aura output)
+      // Playback AudioContext (24kHz linear16 from Deepgram Flux TTS)
       const playbackCtx = new AudioCtx({ sampleRate: 24000 });
       if (playbackCtx.state === "suspended") {
         await playbackCtx.resume();
@@ -226,13 +248,28 @@ export default function VoiceAudioPreview({}: VoiceAudioPreviewProps) {
       gainNode.connect(playbackCtx.destination);
       gainNodeRef.current = gainNode;
 
-      // 3. Connect to Deepgram Voice Agent WebSocket
+      // 3. Connect to Deepgram Voice Agent with a short-lived token
+      let token: string;
+      try {
+        token = await fetchVoiceToken();
+      } catch (e) {
+        setCallStatus("error");
+        setErrorMessage(
+          e instanceof Error && e.message === "busy"
+            ? "The assistant is busy right now. Try again in a minute, or email reda@whoax.com."
+            : "The voice assistant is offline right now. Email reda@whoax.com instead."
+        );
+        endCall();
+        return;
+      }
       const wsUrl = "wss://agent.deepgram.com/v1/agent/converse";
-      const ws = new WebSocket(wsUrl, ["token", deepgramKey]);
+      const ws = new WebSocket(wsUrl, ["bearer", token]);
       ws.binaryType = "arraybuffer";
       wsRef.current = ws;
 
-      // Configuration payload with conversational Flux v2 and tight endpointing thresholds
+      // Turn-taking is owned by Flux's semantic end-of-turn model, not by a
+      // client silence timer: it waits through "um" and mid-sentence pauses and
+      // answers once the caller has actually finished.
       const settingsPayload = {
         type: "Settings",
         audio: {
@@ -247,36 +284,34 @@ export default function VoiceAudioPreview({}: VoiceAudioPreviewProps) {
           },
         },
         agent: {
-          greeting:
-            "Hey, welcome to whoax. Feel free to ask me any questions about Reda's portfolio or projects.",
+          greeting: GREETING,
           listen: {
             provider: {
               type: "deepgram",
               model: "flux-general-en",
               version: "v2",
-              eot_threshold: 0.65,
-              eager_eot_threshold: 0.45,
-              eot_timeout_ms: 1200,
+              keyterms: LISTEN_KEYTERMS,
+              eot_threshold: 0.75, // confidence needed before the assistant replies
+              // No eager_eot_threshold: speculative drafts double LLM calls per turn.
+              eot_timeout_ms: 3500, // reply anyway after this long without more speech
             },
           },
           think: {
+            // Deepgram-hosted LLM: no third-party key has to be sent from the browser.
             provider: {
-              type: "groq",
-              model: "openai/gpt-oss-20b",
+              type: "open_ai",
+              model: "gpt-4.1-mini",
+              temperature: 0.6,
             },
-            endpoint: {
-              url: "https://api.groq.com/openai/v1/chat/completions",
-              headers: {
-                Authorization: `Bearer ${groqKey}`,
-                "Content-Type": "application/json",
-              },
-            },
-            prompt: SYSTEM_PROMPT,
+            prompt: VOICE_SYSTEM_PROMPT,
           },
           speak: {
             provider: {
               type: "deepgram",
-              model: "aura-zeus-en",
+              version: "v2",
+              model: VOICE_MODEL,
+              speed: VOICE_SPEED,
+              expressivity: VOICE_EXPRESSIVITY,
             },
           },
         },
@@ -290,7 +325,8 @@ export default function VoiceAudioPreview({}: VoiceAudioPreviewProps) {
         }
 
         callTimerRef.current = setInterval(() => {
-          setCallDuration((prev) => prev + 1);
+          elapsedSecRef.current += 1;
+          setCallDuration(elapsedSecRef.current);
         }, 1000);
 
         // Setup microphone processor
@@ -340,57 +376,46 @@ export default function VoiceAudioPreview({}: VoiceAudioPreviewProps) {
           }
 
           const agentSpeaking = isAgentPlayingRef.current;
-          // When agent is speaking, higher threshold prevents speaker feedback from causing self-interruption
-          const speechThreshold = agentSpeaking ? 30 : 15;
 
-          if (level >= speechThreshold) {
-            // User is actively speaking
-            if (agentSpeaking) {
-              // User barge-in: stop agent audio immediately
-              stopAudioPlayback();
-              isAgentPlayingRef.current = false;
-              setCallStatus("listening");
-            }
+          // Track the room's ambient level: drops quickly, rises slowly, so a
+          // long sentence from the caller doesn't get mistaken for room noise.
+          const floor = noiseFloorRef.current;
+          const nextFloor = rms < floor ? floor * 0.9 + rms * 0.1 : floor * 0.995 + rms * 0.005;
+          noiseFloorRef.current = Math.min(0.05, Math.max(0.0015, nextFloor));
 
-            if (!isUserSpeakingRef.current) {
-              isUserSpeakingRef.current = true;
-              setIsUserSpeaking(true);
-            }
-            userSpokeInTurnRef.current = true;
+          const ratio = agentSpeaking ? GATE_RATIO_AGENT_TALKING : GATE_RATIO_IDLE;
+          const minRms = agentSpeaking ? GATE_MIN_RMS_AGENT_TALKING : GATE_MIN_RMS_IDLE;
+          const isPrimarySpeech = rms > Math.max(noiseFloorRef.current * ratio, minRms);
 
-            // Clear any pending silence timer
-            if (silenceTimerRef.current) {
-              clearTimeout(silenceTimerRef.current);
-              silenceTimerRef.current = null;
+          const now = performance.now();
+          if (isPrimarySpeech) gateOpenUntilRef.current = now + GATE_HANGOVER_MS;
+          const gateOpen = now < gateOpenUntilRef.current;
+
+          if (isPrimarySpeech !== isUserSpeakingRef.current) {
+            isUserSpeakingRef.current = isPrimarySpeech;
+            setIsUserSpeaking(isPrimarySpeech);
+          }
+
+          const ws = wsRef.current;
+          if (!ws) return;
+          if (gateOpen) {
+            // Gate just opened: send the buffered lead-in first so the start of
+            // the word reaches the model.
+            if (!gateWasOpenRef.current) {
+              preRollRef.current.forEach((buf) => ws.send(buf));
+              preRollRef.current = [];
             }
+            ws.send(pcm16.buffer);
           } else {
-            // Audio is below speech threshold (silence/ambient pause)
-            if (isUserSpeakingRef.current) {
-              isUserSpeakingRef.current = false;
-              setIsUserSpeaking(false);
-            }
-
-            // If user has spoken in this turn, start short silence countdown for instant turn completion
-            if (userSpokeInTurnRef.current && !silenceTimerRef.current && !agentSpeaking) {
-              silenceTimerRef.current = setTimeout(() => {
-                // 700ms silence detected after speech: end user turn and prompt agent reply
-                if (userSpokeInTurnRef.current && wsRef.current?.readyState === WebSocket.OPEN) {
-                  userSpokeInTurnRef.current = false;
-                  silenceTimerRef.current = null;
-                  setCallStatus("thinking");
-                  wsRef.current.send(JSON.stringify({ type: "ForceEndTurn" }));
-                }
-              }, 700);
-            }
+            preRollRef.current.push(pcm16.buffer);
+            if (preRollRef.current.length > GATE_PREROLL_FRAMES) preRollRef.current.shift();
+            // Send silence of the same length so the stream's clock keeps running.
+            ws.send(new Int16Array(pcm16.length).buffer);
           }
-
-          // If agent is speaking and level is below barge-in threshold, gate audio to prevent echo
-          if (agentSpeaking && level < speechThreshold) {
-            return;
-          }
-
-          // Stream raw 16-bit PCM buffer to Deepgram
-          wsRef.current.send(pcm16.buffer);
+          gateWasOpenRef.current = gateOpen;
+          // Barge-in is not decided here. A loud noise or a voice in the room
+          // must not cut the assistant off; Deepgram only reports
+          // UserStartedSpeaking for real speech, and that stops playback below.
         };
       };
 
@@ -502,27 +527,28 @@ export default function VoiceAudioPreview({}: VoiceAudioPreviewProps) {
               setCallStatus("listening");
             }
           } else if (data.type === "ConversationText") {
-            const role = data.role === "assistant" ? "agent" : "user";
-            const text = data.content;
-            if (text && text.trim()) {
-              setTranscript((prev) => [
-                ...prev,
-                {
-                  role,
-                  text: text.trim(),
-                  time: formatTime(callDuration),
-                },
-              ]);
+            const isAgent = data.role === "assistant";
+            const text = stripEmoji(String(data.content ?? ""));
+            if (!text) return;
+            if (isAgent) {
+              lastAgentTextRef.current = text;
+            } else if (isEchoOf(text, lastAgentTextRef.current)) {
+              // The mic picked up the assistant's own voice. Don't show it as the caller.
+              return;
             }
+            setTranscript((prev) => [
+              ...prev,
+              { role: isAgent ? "agent" : "user", text, time: formatTime(elapsedSecRef.current) },
+            ]);
           } else if (data.type === "Error") {
-            setErrorMessage(data.description || "Voice Agent error received from server.");
+            setErrorMessage(data.description || "The assistant hit a problem. Try the call again, or email reda@whoax.com.");
           }
         } catch (e) {}
       };
 
       ws.onerror = () => {
         setCallStatus("error");
-        setErrorMessage("Connection error. Check network connection and API status.");
+        setErrorMessage("Couldn't connect. Check your internet connection and try again.");
       };
 
       ws.onclose = () => {
@@ -530,15 +556,15 @@ export default function VoiceAudioPreview({}: VoiceAudioPreviewProps) {
       };
     } catch (err: unknown) {
       setCallStatus("error");
-      let msg = "Microphone error occurred.";
+      let msg = "Your microphone didn't start. Try again.";
       if (err instanceof DOMException) {
         if (err.name === "NotAllowedError" || err.name === "PermissionDeniedError") {
           msg =
-            "Microphone permission was denied. Please allow microphone access in your browser settings (click the lock or camera icon in the address bar).";
+            "Microphone access is blocked. Allow it from the lock or camera icon in the address bar, then call again.";
         } else if (err.name === "NotFoundError" || err.name === "DevicesNotFoundError") {
-          msg = "No microphone found. Please connect an audio input device.";
+          msg = "No microphone found. Plug one in or switch devices, then call again.";
         } else if (err.name === "NotReadableError" || err.name === "TrackStartError") {
-          msg = "Microphone is in use by another application. Please close other voice apps.";
+          msg = "Another app is using your microphone. Close it, then call again.";
         } else {
           msg = `Microphone error: ${err.message}`;
         }
@@ -609,30 +635,30 @@ export default function VoiceAudioPreview({}: VoiceAudioPreviewProps) {
           <span
             className={`inline-block w-2 h-2 shrink-0 ${
               callStatus === "speaking"
-                ? "bg-emerald-400 animate-pulse"
+                ? "bg-[#cbe3b3] animate-pulse"
                 : callStatus === "thinking"
-                ? "bg-sky-400 animate-ping"
+                ? "bg-[#b3e3ca] animate-ping"
                 : isUserSpeaking
-                ? "bg-lime-400 animate-pulse"
+                ? "bg-[#dbe6af] animate-pulse"
                 : callStatus === "listening"
-                ? "bg-amber-400 animate-pulse"
+                ? "bg-[#f5d098] animate-pulse"
                 : callStatus === "connecting"
-                ? "bg-purple-400 animate-ping"
+                ? "bg-[#d2bdf3] animate-ping"
                 : "bg-[#6f8788]"
             }`}
           />
           <span className="text-[#cbe3b3] uppercase font-bold tracking-wider truncate">
             {callStatus === "speaking"
-              ? "ASSISTANT SPEAKING"
+              ? "ASSISTANT TALKING"
               : callStatus === "thinking"
-              ? "THINKING..."
+              ? "THINKING…"
               : isUserSpeaking
-              ? "YOU ARE SPEAKING..."
+              ? "YOU'RE TALKING"
               : callStatus === "listening"
-              ? "LISTENING (SPEAK FREELY)"
+              ? "LISTENING"
               : callStatus === "connecting"
-              ? "CONNECTING..."
-              : "READY TO CALL"}
+              ? "CONNECTING…"
+              : "READY"}
           </span>
 
           {/* Live Mic Activity VU Indicator */}
@@ -640,16 +666,16 @@ export default function VoiceAudioPreview({}: VoiceAudioPreviewProps) {
             <span
               className={`ml-1.5 px-1.5 py-0.5 text-[10px] shrink-0 flex items-center gap-1 border ${
                 isUserSpeaking || micLevel > 15
-                  ? "bg-emerald-950/80 text-emerald-300 border-emerald-700/60"
+                  ? "bg-[#cbe3b3]/10 text-[#cbe3b3] border-[#cbe3b3]/40"
                   : "bg-[#14181a] text-[#839e9a] border-[#2b3337]"
               }`}
             >
               <Mic
                 className={`w-3 h-3 shrink-0 ${
-                  isUserSpeaking || micLevel > 15 ? "text-emerald-400 animate-pulse" : ""
+                  isUserSpeaking || micLevel > 15 ? "text-[#cbe3b3] animate-pulse" : ""
                 }`}
               />
-              <span className="truncate">{isUserSpeaking ? "SPEAKING" : micLevel > 15 ? "VOICE DETECTED" : "LISTENING"}</span>
+              <span className="truncate">{isUserSpeaking ? "SPEAKING" : micLevel > 15 ? "HEARD YOU" : "LISTENING"}</span>
             </span>
           )}
         </div>
@@ -658,7 +684,7 @@ export default function VoiceAudioPreview({}: VoiceAudioPreviewProps) {
           {isCallActive ? (
             <span className="text-[#cbe3b3] font-semibold">{formatTime(callDuration)}</span>
           ) : (
-            <span className="hidden sm:inline text-[#6f8788]">LIVE VOICE LINK</span>
+            <span className="hidden sm:inline text-[#6f8788]">AI PHONE DEMO</span>
           )}
         </div>
       </div>
@@ -675,11 +701,11 @@ export default function VoiceAudioPreview({}: VoiceAudioPreviewProps) {
                 ? callStatus === "speaking"
                   ? "#cbe3b3"
                   : callStatus === "thinking"
-                  ? "#38bdf8"
+                  ? "#b3e3ca"
                   : isUserSpeaking
-                  ? "#a3e635"
+                  ? "#dbe6af"
                   : micLevel > 15
-                  ? "#facc15"
+                  ? "#f5d098"
                   : "#f8f9e8"
                 : "#374145",
               opacity: isCallActive ? 0.95 : 0.35,
@@ -690,8 +716,8 @@ export default function VoiceAudioPreview({}: VoiceAudioPreviewProps) {
 
       {/* Error Alert */}
       {errorMessage && (
-        <div className="mb-4 p-3 bg-rose-950/40 border border-rose-800/60 text-rose-200 text-[12px] flex items-start gap-2.5">
-          <AlertCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+        <div className="mb-4 p-3 bg-[#f57f82]/10 border border-[#f57f82]/40 text-[#f8d4d5] text-[12px] flex items-start gap-2.5">
+          <AlertCircle className="w-4 h-4 text-[#f57f82] shrink-0 mt-0.5" />
           <div className="leading-relaxed break-words flex-1 min-w-0">{errorMessage}</div>
         </div>
       )}
@@ -703,19 +729,19 @@ export default function VoiceAudioPreview({}: VoiceAudioPreviewProps) {
             <>
               <button
                 onClick={endCall}
-                className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 text-[12px] font-bold bg-rose-700 hover:bg-rose-600 text-white border border-rose-500 cursor-pointer"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 text-[12px] font-bold bg-[#f57f82] hover:bg-[#f79a9c] text-[#1c2225] border border-[#f57f82] cursor-pointer"
               >
                 <PhoneOff className="w-3.5 h-3.5" />
-                <span>$ :hangup [END CALL]</span>
+                <span>$ hang up</span>
               </button>
 
               <button
                 onClick={triggerForceEndTurn}
-                title="Request immediate response"
+                title="Ask the assistant to answer now"
                 className="w-full sm:w-auto flex items-center justify-center gap-1.5 px-3 py-2 text-[12px] font-semibold bg-[#1e272b] hover:bg-[#283439] text-[#cbe3b3] border border-[#3b4c53] cursor-pointer"
               >
-                <Zap className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
-                <span>[ :force-reply ]</span>
+                <Zap className="w-3.5 h-3.5 text-[#f5d098] fill-[#f5d098]" />
+                <span>[ answer now ]</span>
               </button>
             </>
           ) : (
@@ -724,15 +750,15 @@ export default function VoiceAudioPreview({}: VoiceAudioPreviewProps) {
               className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2.5 text-[12px] font-bold bg-[#cbe3b3] hover:bg-[#d8eec2] text-[#1c2225] border border-[#cbe3b3] cursor-pointer"
             >
               <PhoneCall className="w-3.5 h-3.5 fill-current" />
-              <span>$ :call-assistant [START VOICE CALL]</span>
+              <span>$ call my AI assistant</span>
             </button>
           )}
         </div>
 
         <div className="text-[11px] text-[#839e9a] text-left sm:text-right font-mono truncate">
           {isCallActive
-            ? "Speak freely. Auto-replies when you pause."
-            : "Real-time AI voice link. Mic required."}
+            ? "Just talk. It answers once you've finished."
+            : "Uses your microphone. Free, no sign-up."}
         </div>
       </div>
 
@@ -743,7 +769,8 @@ export default function VoiceAudioPreview({}: VoiceAudioPreviewProps) {
             type="text"
             value={textInput}
             onChange={(e) => setTextInput(e.target.value)}
-            placeholder="whoax@term:~$ type question and press Enter..."
+            placeholder="Or type a question and press Enter"
+            aria-label="Type a question for the assistant"
             className="flex-1 min-w-0 bg-[#101416] border border-[#2b3337] px-3 py-1.5 text-[12px] text-[#f8f9e8] placeholder-[#6f8788] focus:outline-none focus:border-[#cbe3b3] font-mono"
           />
           <button
@@ -760,12 +787,12 @@ export default function VoiceAudioPreview({}: VoiceAudioPreviewProps) {
       {/* Live Conversation Transcript Terminal */}
       <div className="border border-[#2b3337] bg-[#101416] p-3 min-h-[90px] max-h-[180px] overflow-y-auto space-y-1.5 text-[12px] font-mono">
         <div className="text-[10px] text-[#6f8788] border-b border-[#232a2e] pb-1 mb-1.5 flex justify-between select-none">
-          <span>// LIVE_TRANSCRIPT</span>
-          <span>CONSOLE</span>
+          <span>{"// transcript"}</span>
+          <span>live</span>
         </div>
         {transcript.length === 0 ? (
           <div className="text-[#6f8788]">
-            Click &quot;$ :call-assistant&quot; to speak directly with Reda&apos;s AI assistant. Ask about $10K agency sites, telephony voice agents, Shopify plugins, or cloud architecture.
+            Press &quot;call my AI assistant&quot; and ask it about my work: websites, online stores, phone assistants or anything on this site. It&apos;s the same kind of assistant I build for clients.
           </div>
         ) : (
           transcript.map((entry, idx) => (

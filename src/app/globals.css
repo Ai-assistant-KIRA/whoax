@@ -100,8 +100,8 @@
 }
 
 html {
-  background-color: #0b0b0d;
-  scrollbar-color: #2b2b31 #0b0b0d;
+  background-color: #1c2225;
+  scrollbar-color: #374145 #161c1f;
 }
 
 body {
@@ -112,15 +112,36 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Browser surfaces themed from the Everforest terminal palette */
 ::selection {
-  background-color: var(--color-signal);
-  color: var(--color-void);
+  background-color: #cbe3b3;
+  color: #1c2225;
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-signal);
-  outline-offset: 3px;
-  border-radius: 2px;
+  outline: 2px solid #cbe3b3;
+  outline-offset: 2px;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #161c1f;
+}
+::-webkit-scrollbar-thumb {
+  background: #374145;
+  border: 2px solid #161c1f;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4a585c;
+}
+
+input,
+textarea {
+  caret-color: #cbe3b3;
 }
 
 /*

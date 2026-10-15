@@ -77,9 +77,9 @@ export default function DigitalMeadowPortfolio() {
             <button
               onClick={() => prevFileId && handleSelectFile(prevFileId)}
               disabled={!prevFileId}
-              className="px-1.5 py-0.5 text-[#839e9a] hover:text-[#f8f9e8] disabled:opacity-25 cursor-pointer disabled:cursor-not-allowed font-bold"
-              title="Previous file"
-              aria-label="Previous file"
+              className="px-2.5 py-1 text-[#839e9a] hover:text-[#f8f9e8] disabled:opacity-25 cursor-pointer disabled:cursor-not-allowed font-bold"
+              title="Previous page"
+              aria-label="Previous page"
             >
               ‹
             </button>
@@ -87,9 +87,9 @@ export default function DigitalMeadowPortfolio() {
             <button
               onClick={() => nextFileId && handleSelectFile(nextFileId)}
               disabled={!nextFileId}
-              className="px-1.5 py-0.5 text-[#cbe3b3] hover:text-[#f8f9e8] disabled:opacity-25 cursor-pointer disabled:cursor-not-allowed font-bold"
-              title="Next file"
-              aria-label="Next file"
+              className="px-2.5 py-1 text-[#cbe3b3] hover:text-[#f8f9e8] disabled:opacity-25 cursor-pointer disabled:cursor-not-allowed font-bold"
+              title="Next page"
+              aria-label="Next page"
             >
               ›
             </button>
@@ -104,7 +104,8 @@ export default function DigitalMeadowPortfolio() {
           <button
             onClick={() => switchBgMode(bgMode === "3d" ? "ascii" : "3d")}
             className="px-2 py-1 border border-[#374145] bg-[#1c2225] text-[#adc9bc] text-[10px] font-bold hover:text-[#f8f9e8] cursor-pointer"
-            title={`Switch to ${bgMode === "3d" ? "ASCII Matrix" : "3D Meadow"}`}
+            title={`Switch to the ${bgMode === "3d" ? "ASCII" : "3D meadow"} background`}
+            aria-label={`Switch to the ${bgMode === "3d" ? "ASCII" : "3D meadow"} background`}
           >
             [{bgMode === "3d" ? "3D" : "ASCII"}]
           </button>
@@ -139,29 +140,31 @@ export default function DigitalMeadowPortfolio() {
       </div>
 
       {/* Terminal Engine Selector */}
-      <aside aria-label="Visual Engine Switcher" className="hidden md:flex fixed bottom-3 right-4 z-50 items-center gap-1 p-1 border border-[#374145] bg-[#181e22]/95 backdrop-blur-md font-mono text-[11px]">
-        <span className="px-2 text-[10px] text-[#6f8788] select-none">ENGINE:</span>
+      <aside aria-label="Background style" className="hidden md:flex fixed bottom-3 right-4 z-50 items-center gap-1 p-1 border border-[#374145] bg-[#181e22]/95 backdrop-blur-md font-mono text-[11px]">
+        <span className="px-2 text-[11px] text-[#839e9a] select-none">background</span>
         <button
           onClick={() => switchBgMode("3d")}
-          title="Switch to 3D WebGL Cyber Meadow"
-          className={`px-2.5 py-1 transition-all cursor-pointer font-bold ${
+          aria-pressed={bgMode === "3d"}
+          title="3D meadow background"
+          className={`px-2.5 py-1 transition-colors cursor-pointer font-bold ${
             bgMode === "3d"
               ? "bg-[#cbe3b3] text-[#1c2225]"
               : "text-[#839e9a] hover:text-[#f8f9e8] hover:bg-[#232a2e]"
           }`}
         >
-          [ 3D_MEADOW ]
+          [ 3d meadow ]
         </button>
         <button
           onClick={() => switchBgMode("ascii")}
-          title="Switch to retro ASCII Matrix grid"
-          className={`px-2.5 py-1 transition-all cursor-pointer font-bold ${
+          aria-pressed={bgMode === "ascii"}
+          title="ASCII background"
+          className={`px-2.5 py-1 transition-colors cursor-pointer font-bold ${
             bgMode === "ascii"
               ? "bg-[#cbe3b3] text-[#1c2225]"
               : "text-[#839e9a] hover:text-[#f8f9e8] hover:bg-[#232a2e]"
           }`}
         >
-          [ ASCII_GRID ]
+          [ ascii ]
         </button>
       </aside>
     </div>
