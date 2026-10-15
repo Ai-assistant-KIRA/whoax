@@ -28,12 +28,6 @@ const STATS: Stat[] = [
     label: "of support triage automated through AI/WhatsApp flows",
   },
   {
-    value: 2.3,
-    decimals: 1,
-    suffix: "s",
-    label: "LCP through Core Web Vitals + technical SEO",
-  },
-  {
     value: 10,
     prefix: "<",
     suffix: " days",
