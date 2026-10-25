@@ -8,54 +8,50 @@ export const PORTFOLIO_FILES: Record<string, PortfolioFile> = {
     icon: "FileCode",
     category: "root",
     title: "Reda Alaarabi · whoax.com",
-    subtitle: "Senior Web & Systems Engineer. 7 years. Built for business results.",
-    lastUpdated: "2026-10-09",
+    subtitle: "I build websites, online stores and AI phone assistants for businesses. Seven years in, and you deal with me directly.",
+    lastUpdated: "2026-10-15",
     tags: ["WebDev", "Cloud", "eCommerce", "VoiceAgents", "SEO", "Ads", "APIs"],
     content: `# Reda Alaarabi · whoax.com
-If you are running a business or hiring for a senior engineering role, you probably care about two things: does this person build things that actually work, and can they deliver without needing six meetings to change a button color?
+I'm Reda. I build websites, web apps, online stores and AI phone assistants for businesses that judge a website by the customers it brings in. In seven years I've shipped work for restaurants, medical and dental clinics, law firms, real estate agencies, a flight booking company, clothing brands, software startups and busy online shops.
 
-I am Reda Alaarabi. I build and maintain $10K-grade agency websites, custom web applications, high-performance eCommerce platforms, and automated voice support systems. Over the last seven years, I have shipped production systems for restaurants, medical clinics, law firms, real estate agencies, flight booking companies, clothing brands, B2B SaaS startups, and high-volume online stores.
+[ WHY WORK WITH ME ]
+* You talk to the person writing the code. There's no account manager relaying messages and no ticket queue to wait in.
+* I own the whole job: design, code, hosting, tracking and checkout. If something breaks on a Saturday, I'm the one who fixes it.
+* Speed comes first. A site that takes six seconds to load on a phone loses the visitor, so page speed is part of every build.
 
-[ WHY HIRE ME INSTEAD OF A TRADITIONAL AGENCY ]
-* Direct line to the builder: You talk directly to the engineer writing your code and managing your infrastructure. No account managers playing telephone, no junior handoffs, and no three-week ticket queues.
-* Full-stack ownership: I build the user interface, write the backend logic, configure the cloud servers, set up the tracking pixels, and make sure your checkout converts. If something breaks on a Saturday, I fix it.
-* Built for revenue, not portfolio awards: A pretty website that takes six seconds to load on a smartphone is useless. Every layout, cache rule, and button I build is engineered to load in under a second and get visitors to take action.
+[ WHAT I BUILD ]
+* Websites for clinics, law firms, restaurants, real estate, travel and service businesses, designed for phones and built to get people to call, book or buy.
+* Web apps and dashboards: booking systems, internal tools and live reports, where each person on your team sees only what they need.
+* Shopify and WooCommerce add-ons, written from scratch when the app-store version slows your store down or clashes with your theme.
+* AI phone and chat assistants that answer on the first ring, book appointments and handle the routine questions.
+* Ad creative and launch campaigns for products and services.
+* Google and Meta ads, with sales reported from your server so the ad platforms see every purchase.
+* SEO for local, national and international search.
+* Social media management: planning, scheduling and audience growth.
+* Connections between your tools (CRM, payments, bookings, stock and AI assistants) so data moves on its own instead of by copy and paste.
 
-[ WHAT I DELIVER ]
-* $10K-Grade Agency Websites: High-converting, mobile-first websites for clinics, law firms, restaurants, real estate, flights, and service brands.
-* Custom Web Apps & Dashboards: Fast SaaS platforms, internal operations tools, and real-time dashboards with clean role-based permissions.
-* Custom Shopify & WooCommerce Plugins: Lightweight plugins built from scratch when off-the-shelf marketplace add-ons slow down your site or conflict with your theme.
-* AI Voice & Chat Support Agents: Inbound phone agents that pick up on the first ring, speak with sub-600ms latency, and handle bookings and routine questions so your team stays focused.
-* Product Marketing & Creative Campaigns: High-converting creative assets, ad variations, and product launch marketing built with modern generative production workflows.
-* Scaled Google & Meta Ads: Search, Shopping, and social campaigns paired with server-side tracking (Meta CAPI and AWS Server GTM) so your ad spend optimizes against verified revenue.
-* Local, National & International SEO: Clean technical site architecture, schema markup, and speed optimization that rank on Google and bring in steady organic leads.
-* Social Media Management: Strategic audience growth, scheduling, and brand positioning across major networks.
-* Custom APIs & MCP Tool Servers: Direct data bridges between CRMs, payment gateways, internal databases, and AI tooling using modern protocols.
+[ HOW I WORK ]
+1. It stays online. Sites hold up when an ad goes viral, and updates go out without taking checkout down.
+2. Security is planned from day one. Customer data stays private, payments stay locked down, and the setup meets privacy rules like GDPR.
+3. It's built to grow. Pages and searches stay as fast at 100,000 customers as they were at 100.
+4. The code is tested and tidy, so another developer can pick it up five years from now.
+5. I talk in plain English about margins, bookings and repeat customers, and I work easily with your designers, marketers and staff.
 
-[ THE 5 SENIOR ENGINEERING PILLARS ]
-1. Cloud Architecture & Infrastructure Engineering (DevOps / SRE): High availability on AWS, automated Docker CI/CD pipelines, zero-downtime deployments, and real-time monitoring.
-2. Enterprise Security, Privacy & Compliance: Data protection, input sanitization, TLS encryption, GDPR compliance, and clean access control built in from day one.
-3. Scalable Data Architecture & High-Throughput Backends: PostgreSQL schemas, Redis caching, and resilient REST/GraphQL APIs engineered to handle sudden traffic surges without choking.
-4. Rigorous Software Testing & Technical Debt Control: Clean TypeScript, unit and integration test coverage, and modular code that your team can maintain five years from now.
-5. Product Sense, Ownership & Cross-Functional Teamwork: I communicate in plain English, think in terms of customer retention and profit margins, and collaborate smoothly with design, marketing, and operations.
+[ NUMBERS ]
+* Phone assistants that reply in under 0.6\u00a0seconds.
+* Server tracking that recovers more than 30% of the sales browsers missed.
+* 7+ years of hands-on work across ten industries.
 
-[ PROVEN NUMBERS ]
-* 94/100 Mobile PageSpeed achieved on custom commerce rebuilds, cutting mobile load times to under 1.2 seconds.
-* $2.4M ARR scaled on a high-volume apparel platform by rebuilding the custom theme and optimizing checkout flow.
-* Sub-600ms roundtrip response time on automated voice telephony agents.
-* Over $400K in client ad spend managed with server-side tracking recovering 30%+ of dropped browser signals.
-* 7+ years of hands-on delivery across ten distinct business industries.
-
-[ HOW TO EXPLORE ]
-Browse the sidebar on the left. The /about folder explains how I operate, /capabilities breaks down each service area, /projects contains documented case studies, and contact.md gets you in touch directly.`,
+[ WHERE TO START ]
+Use the file list on the left. The about folder covers how I work, capabilities covers each service, projects has the case studies, and contact.md has my email.`,
     meta: {
-      timeline: "2018 — Present",
-      impact: "94/100 PageSpeed · $2.4M ARR · Sub-600ms Voice Latency",
+      timeline: "2018 to today",
+      impact: "7+ years · Ten industries · Phone replies in under 0.6\u00a0s",
       stack: ["Next.js", "TypeScript", "Shopify Plus", "WooCommerce", "AWS", "Twilio", "PostgreSQL"],
       liveUrl: "https://whoax.com",
       videoPreview: {
         src: "/portfolio-intro.mp4",
-        title: "70-Second Executive Video Briefing",
+        title: "Meet Reda in 70 Seconds",
         durationSec: 70,
       },
     },
@@ -67,36 +63,36 @@ Browse the sidebar on the left. The /about folder explains how I operate, /capab
     path: "/INTRO_VIDEO.mp4",
     icon: "Video",
     category: "root",
-    title: "Executive Video Dispatch · whoax.com",
-    subtitle: "70-second high-impact overview for business owners, founders, and hiring executives.",
-    lastUpdated: "2026-10-10",
-    tags: ["Video", "ExecutiveOverview", "Cyberpunk", "EpidemicSound", "GSAP"],
-    content: `# Executive Video Dispatch · whoax.com
-70-second high-impact briefing for business owners and recruitment teams. Built to show how bespoke engineering accelerates revenue.
+    title: "Intro Video · whoax.com",
+    subtitle: "Seventy seconds on what I build and why businesses hire me.",
+    lastUpdated: "2026-10-15",
+    tags: ["Video", "Overview", "EpidemicSound", "GSAP"],
+    content: `# Intro Video · whoax.com
+A short overview for business owners and hiring teams. Use the chapter buttons under the player to jump to a section.
 
-[ 8 STRATEGIC VIDEO CHAPTERS ]
-* Chapter 01 (00:00) — Audit Competitor Revenue Loss: Slow websites and missed calls cost businesses millions in lost conversion.
-* Chapter 02 (00:08) — Identity & 7-Year Track Record: Engineering bespoke digital platforms that dominate markets and scale revenue.
-* Chapter 03 (00:17) — Agency Bloat vs Custom Execution: Why $30K bloated templates scare buyers away, and how custom lightweight engines double conversion.
-* Chapter 04 (00:27) — E-Commerce at Multi-Million Dollar Scale: High-volume storefronts, sub-second TTFB, and zero downtime under flash sales.
-* Chapter 05 (00:37) — Inbound 24/7 AI Voice Telephony: First-ring pick-up, automated qualification, and live calendar locking.
-* Chapter 06 (00:46) — The Proof Ledger: 42+ bespoke systems deployed with zero middle-management excuses.
-* Chapter 07 (00:54) — The 2026 Competitive Moat: Outpacing competitors with authentic engineering over generic AI slop.
-* Chapter 08 (01:02) — Direct Founder Dispatch: Ready to scale? Contact directly at reda@whoax.com.
+[ CHAPTERS ]
+* 00:00 Where the money leaks: slow websites and missed calls cost sales.
+* 00:08 Who I am: seven years of building websites and systems that grow revenue.
+* 00:17 Agency or custom: why bloated $30K template sites put buyers off, and how a lean custom build can double conversions.
+* 00:27 Big online stores: storefronts that load fast and stay up through flash sales.
+* 00:37 AI phone assistants: answering on the first ring, qualifying callers and booking them into the calendar.
+* 00:46 The proof: 42+ systems shipped, with no middle managers involved.
+* 00:54 Staying ahead in 2026: real engineering instead of generic AI output.
+* 01:02 Get in touch: reda@whoax.com.
 
-[ PRODUCTION SPECIFICATIONS ]
-* Video Engine: Remotion + GSAP 3.12 (Frame-accurate microsecond tickers & physics easing)
-* Soundtrack: Epidemic Sound "Dark Console" (130 BPM Cyberpunk Darksynth with dynamic ducking)
-* Voiceover: Paul (Epidemic Sound US Male)
-* Resolution & Frame Rate: 1080p Full HD @ 30 FPS (2,100 frames total)
-* Design Language: Everforest Terminal System (Matching whoax.com)`,
+[ HOW IT WAS MADE ]
+* Animated in Remotion and GSAP.
+* Music: "Dark Console" from Epidemic Sound, a 130 BPM darksynth track that dips whenever the narrator speaks.
+* Voiceover from Epidemic Sound.
+* 1080p at 30 frames per second, 2,100 frames in total.
+* Colors and type match this site.`,
     meta: {
-      timeline: "70.00 Seconds · 1080p @ 30 FPS",
-      impact: "42+ Systems Deployed · Zero Agency Overhead · Direct Senior Execution",
-      stack: ["Remotion", "GSAP", "Epidemic Sound", "H.264", "TypeScript"],
+      timeline: "70 seconds · 1080p",
+      impact: "42+ systems shipped · No agency overhead · You work with me directly",
+      stack: ["Remotion", "GSAP", "Epidemic Sound", "TypeScript"],
       videoPreview: {
         src: "/portfolio-intro.mp4",
-        title: "70-Second Executive Video Briefing",
+        title: "Meet Reda in 70 Seconds",
         durationSec: 70,
       },
       liveUrl: "https://whoax.com",
@@ -109,37 +105,33 @@ Browse the sidebar on the left. The /about folder explains how I operate, /capab
     path: "/about/the-operator.md",
     icon: "FileText",
     category: "about",
-    title: "The Operator",
-    subtitle: "One engineer. Full accountability. Real customer empathy.",
-    lastUpdated: "2026-10-09",
+    title: "One Person, Start to Finish",
+    subtitle: "You hire one engineer, and that engineer answers for the result.",
+    lastUpdated: "2026-10-15",
     tags: ["Background", "Experience", "CustomerSupport", "Delivery"],
-    content: `# The Operator
+    content: `# One Person, Start to Finish
 
-Most hiring managers and business owners are used to the agency cycle: you meet an executive, sign a contract, and then find out your project was handed off to junior freelancers working through a checklist. When your store slows down or your tracking breaks, everyone points fingers at someone else.
+Most agencies run the same play. You meet someone senior, sign the contract, and the work goes to junior freelancers with a checklist. When the store slows down or the tracking breaks, everyone blames someone else.
 
-I work as a single accountable senior engineer. When we work together, I handle the architecture, write the code, configure the servers, set up the tracking, and ensure your system performs in production.
+I work alone and I answer for all of it. I plan the project, write the code, set up the servers and tracking, and make sure it holds up once real customers arrive.
 
-[ REAL CUSTOMER SUPPORT EXPERIENCE ]
-A lot of engineers write code in a vacuum without knowing how real customers behave. In addition to technical engineering, I have spent hundreds of hours handling frontline customer support through phone, email, and live chat for active businesses.
+[ I'VE WORKED THE FRONT DESK ]
+Alongside the engineering, I've spent hundreds of hours on customer support for working businesses, by phone, email and live chat. It shapes how I build:
+* I know how fast people abandon a checkout that asks for one field too many.
+* I know the questions callers ask your front desk fifty times a day.
+* I know what it's like to fight a broken mobile page while booking a clinic appointment from the car.
+* So when I build a phone assistant, a chat window or a checkout, I build it for someone in a hurry.
 
-That direct customer experience shapes every line of code I write:
-* I know how quickly a customer abandons a checkout if a form asks for unnecessary information.
-* I know the exact questions callers ask when they ring your front desk fifty times a day.
-* I know how frustrating a broken mobile layout feels to someone trying to book a clinic appointment from their car.
-* When I build a voice agent, a chat interface, or a checkout flow, I design it for real humans under time pressure, not a theoretical user in a slide deck.
+[ WORKING TOGETHER ]
+* You explain the goal and I turn it into working software, with nobody in between rewording it.
+* Features move fast. Without layers of management, something an agency quotes at three weeks often takes me two days.
+* You get regular updates, a preview link to click through, and my honest view of which option pays back best.
 
-[ HOW WORKING TOGETHER WORKS ]
-* No translation layers: You explain your business goals, and I translate them directly into production code and cloud architecture.
-* Fast turnaround: Because I do not have six layers of middle management, a feature that takes an agency three weeks often takes me two days.
-* Transparent communication: You get direct progress updates, clean staging previews, and honest assessments of what technical choices will generate the highest return on investment.
-
-[ INDUSTRIES SERVED ]
-Medical clinics, dental offices, law firms, fine dining restaurants, fast-casual hospitality, flight booking services, real estate brokerages, fashion and apparel brands, B2B SaaS platforms, and local service providers.
-
-Seven years of shipping. Every layer of the system covered. One person accountable for the outcome.`,
+[ INDUSTRIES ]
+Medical clinics, dental offices, law firms, fine dining and fast-casual restaurants, flight booking, real estate, fashion brands, software companies and local service businesses.`,
     meta: {
-      timeline: "2018 — Present",
-      impact: "Direct engineering delivery across 10+ industries",
+      timeline: "2018 to today",
+      impact: "Hands-on delivery across 10+ industries",
       stack: ["Next.js", "Shopify Plus", "WooCommerce", "Node.js", "AWS", "Twilio", "Docker"],
     },
   },
@@ -150,35 +142,35 @@ Seven years of shipping. Every layer of the system covered. One person accountab
     path: "/about/engineering-disciplines.md",
     icon: "Cpu",
     category: "about",
-    title: "The 5 Engineering Disciplines",
-    subtitle: "How senior technical practices protect your business and prevent downtime.",
-    lastUpdated: "2026-10-09",
+    title: "Five Things I Never Skip",
+    subtitle: "The engineering habits that keep your site online and your customers' data safe.",
+    lastUpdated: "2026-10-15",
     tags: ["DevOps", "Security", "Architecture", "Testing", "Product"],
-    content: `# The 5 Engineering Disciplines
+    content: `# Five Things I Never Skip
 
-Whether you are an engineering director reviewing my technical qualifications or a business owner evaluating why you should trust me with your core platform, these five disciplines guide everything I ship.
+Hiring managers want to know how I work. Business owners want to know if they can trust me with the site their sales depend on. These five habits answer both. Each one starts with what it means for you, then how I do it.
 
-[ 01 / CLOUD ARCHITECTURE & INFRASTRUCTURE ENGINEERING (DevOps / SRE) ]
-* What this means for your business: Your website does not crash when your ad campaign goes viral or traffic surges on Black Friday. Your code deploys smoothly in the background without taking down checkout.
-* Technical implementation: AWS cloud services (EC2, S3, CloudFront, Lambda, SES), Docker containerization, automated GitHub Actions CI/CD pipelines, SSL/TLS automation, health checks, and rapid rollback procedures.
+[ 01 / IT STAYS ONLINE ]
+* For you: the site doesn't crash when an ad takes off or Black Friday traffic arrives, and updates go out without taking checkout offline.
+* How: AWS hosting, Docker, automatic deployments from GitHub, SSL certificates, health checks and fast rollbacks.
 
-[ 02 / ENTERPRISE SECURITY, PRIVACY & COMPLIANCE ]
-* What this means for your business: Your customer records stay safe, your payment flows remain airtight, and your company stays fully compliant with modern privacy laws (GDPR, CCPA).
-* Technical implementation: Input sanitization across all forms and API boundaries, strict environment secret isolation, role-based access control (RBAC), database encryption at rest, secure webhook signature verification, and regular dependency vulnerability scanning.
+[ 02 / SECURITY AND PRIVACY ]
+* For you: customer records stay private, payments stay secure, and you meet privacy laws like GDPR and CCPA.
+* How: every form and input is checked, secrets are kept out of the code, staff get only the access they need, databases are encrypted, and dependencies are scanned for known problems.
 
-[ 03 / SCALABLE DATA ARCHITECTURE & HIGH-THROUGHPUT BACKENDS ]
-* What this means for your business: Your platform runs just as fast with 100,000 customers as it did with 100. Product searches, booking calendars, and customer dashboards load instantly instead of stalling.
-* Technical implementation: Relational PostgreSQL schemas with optimized indexes, Redis in-memory caching for hot queries, efficient pagination, and resilient REST and GraphQL APIs that handle concurrent traffic gracefully.
+[ 03 / FAST AT ANY SIZE ]
+* For you: search, booking calendars and customer dashboards load as quickly with 100,000 customers as they did with 100.
+* How: PostgreSQL with proper indexes, Redis caching, paged results, and APIs that hold up under heavy traffic.
 
-[ 04 / RIGOROUS SOFTWARE TESTING & TECHNICAL DEBT CONTROL ]
-* What this means for your business: Adding a new promotion, booking option, or feature today will not accidentally break your checkout tomorrow. Other developers can read, maintain, and extend the codebase with confidence.
-* Technical implementation: Automated unit and integration test suites, strict TypeScript types to eliminate runtime crashes, modular component design, clean documentation, and disciplined refactoring that prevents technical debt from accumulating.
+[ 04 / TESTED, READABLE CODE ]
+* For you: launching a promotion today won't break checkout tomorrow, and any good developer can take the code over.
+* How: automated tests, strict TypeScript, small reusable components, written documentation and regular cleanup.
 
-[ 05 / PRODUCT SENSE, OWNERSHIP & CROSS-FUNCTIONAL TEAMWORK ]
-* What this means for your business: You get an engineer who cares about your profit margins, user retention, and business goals, rather than someone who just writes code blindly from a ticket.
-* Technical implementation: Seamless collaboration with founders, designers, marketers, and operations staff. Plain-English communication, proactive bottleneck identification, and total ownership of the final user experience from first click to final conversion.`,
+[ 05 / I CARE HOW THE BUSINESS DOES ]
+* For you: an engineer who thinks about your margins, repeat customers and goals, and asks why before building what a ticket says.
+* How: I work directly with founders, designers, marketers and operations staff, flag bottlenecks early, and own the experience from first click to purchase.`,
     meta: {
-      impact: "High availability · Zero data leaks · Maintainable codebases",
+      impact: "Stays online · Keeps data safe · Easy to maintain",
       stack: ["AWS", "Docker", "PostgreSQL", "Redis", "TypeScript", "Jest", "CI/CD"],
     },
   },
@@ -190,27 +182,27 @@ Whether you are an engineering director reviewing my technical qualifications or
     icon: "FileText",
     category: "about",
     title: "Why This Site Looks Like a Terminal",
-    subtitle: "Real engineering beats template fluff every single time.",
-    lastUpdated: "2026-10-09",
+    subtitle: "A site you can explore shows my work better than another template would.",
+    lastUpdated: "2026-10-15",
     tags: ["Philosophy", "Craft", "Performance"],
     content: `# Why This Site Looks Like a Terminal
 
-Open ten agency or developer portfolios right now. You will see the exact same thing: a stock video of someone smiling at a laptop, a purple gradient background, and generic buzzwords promising "synergistic digital transformation." Most of those websites were built with a visual page builder that takes five seconds to load and breaks on mobile.
+Open ten agency or developer portfolios and you'll find the same stock photo of someone smiling at a laptop, the same purple gradient and the same promise of "digital transformation". Plenty of them are made in page builders that take five seconds to load and fall apart on a phone.
 
-I built this portfolio as an interactive terminal running a custom 60 FPS canvas engine in TypeScript. The layout has zero bloated libraries and zero template filler. It works as an immediate proof of engineering skill: when everyone else presents generic templates, showing up with custom code and clean typography speaks for itself.
+I built this one as a terminal you can click through. The ASCII background is my own canvas code with no libraries behind it, and the 3D meadow is a WebGL scene I built with three.js. It's the first sample of my work you see.
 
-[ MY WORKING PRINCIPLES ]
-* Speed is revenue: Every 100 milliseconds of mobile load time directly impacts conversion rates. If your customer has to stare at a loading screen, they leave and buy from your competitor. I build fast systems by default.
-* Accurate measurement before ad spend: Pumping thousands of dollars into Google or Meta ads without server-side tracking is like driving with your headlights off. We fix tracking first so the ad algorithms optimize on real purchase data.
-* One accountable owner: Projects involving four different agencies always fail the same way: nobody takes responsibility when metrics drop. I take ownership of the whole pipeline.
-* Practical tools over trendy hype: A clean, custom WordPress or Next.js build beats an over-complicated microservice architecture that requires four engineers to keep running. I pick the right tool for your specific business size and budget.
-* Security is structural: Protecting customer data and securing API endpoints is not something you bolt on after launch. It is built into the architecture from day one.
+[ WHAT I BELIEVE ]
+* Speed is money. Every extra tenth of a second on a phone costs sales, because people won't wait and a competitor is one tap away.
+* Measure before you spend. Ads without server-side tracking mean paying for clicks you can't trace to sales, so I fix tracking first and let Google and Meta learn from real purchases.
+* One person should own the result. Projects split across four agencies fail the same way: when the numbers drop, nobody is responsible.
+* Pick tools that fit. A clean WordPress or Next.js build beats a sprawling setup that needs four engineers to keep running, so I choose for your size and budget.
+* Plan security first. I decide how customer data is protected before the first page is built.
 
-[ THE BOTTOM LINE ]
-This site is a filter. If you value clean execution, fast performance, and direct communication, we will work together very well.`,
+[ THE SHORT VERSION ]
+If you like clean work, fast pages and straight talk, we'll get along.`,
     meta: {
-      impact: "60 FPS native canvas · Zero bloated libraries · Direct results",
-      stack: ["HTML5 Canvas", "TypeScript", "Monospace", "Clean Execution"],
+      impact: "Hand-built ASCII background · 60 FPS · Light on your phone's battery",
+      stack: ["HTML5 Canvas", "TypeScript", "three.js", "WebGL"],
     },
   },
 
@@ -220,44 +212,44 @@ This site is a filter. If you value clean execution, fast performance, and direc
     path: "/about/stack-and-ops.md",
     icon: "Cpu",
     category: "about",
-    title: "Stack & Tooling",
-    subtitle: "The battle-tested technologies I ship with across all disciplines.",
-    lastUpdated: "2026-10-09",
+    title: "Tools I Use",
+    subtitle: "Stable, fast and easy for the next developer to pick up.",
+    lastUpdated: "2026-10-15",
     tags: ["Stack", "Tools", "Infrastructure", "DevOps"],
-    content: `# Stack & Tooling
+    content: `# Tools I Use
 
-I select technologies based on stability, speed, and long-term maintainability for clients, not personal vanity.
+I choose tools that will still be easy to work with in five years. This page is mostly for developers and hiring managers; if you run a business, the short version is that I cover everything from the page your customers see to the server it runs on.
 
-[ WEBSITES & FRONTEND ]
-* Frameworks: Next.js App Router, React, TypeScript, WordPress, Shopify Liquid, vanilla HTML5/CSS3.
-* Styling & Motion: Tailwind CSS, CSS Custom Properties, Framer Motion, performant canvas animations.
-* Performance: Core Web Vitals optimization, critical CSS inlining, Cloudflare edge caching, responsive SVG graphics.
+[ WEBSITES ]
+* Frameworks: Next.js, React, TypeScript, WordPress, Shopify Liquid, plain HTML and CSS.
+* Styling and motion: Tailwind CSS, Framer Motion, canvas animation.
+* Speed: Core Web Vitals tuning, Cloudflare caching, lightweight SVG graphics.
 
-[ WEB APPS, SAAS & DASHBOARDS ]
-* Backend: Node.js, Express, Python, PostgreSQL, Supabase, Redis.
-* Frontend State: React Query, Zustand, TypeScript, modular components.
-* Operational Dashboards: Custom metrics views, secure WebSockets, role-based access control, automated report generation.
+[ WEB APPS AND DASHBOARDS ]
+* Back end: Node.js, Express, Python, PostgreSQL, Supabase, Redis.
+* Front end: React Query, Zustand, TypeScript.
+* Dashboards: live numbers, user roles and permissions, scheduled reports.
 
-[ CLOUD, DEVOPS & SECURITY ]
-* Cloud Infrastructure: AWS (EC2, S3, CloudFront, Lambda, SES), Vercel, Railway, Render.
-* DevOps & CI/CD: Docker containers, GitHub Actions automated workflows, environment secret segregation, uptime health checks.
-* Security: Input validation, HTTPS/TLS encryption, RBAC permissions, GDPR/CCPA data handling, automated vulnerability scans.
+[ HOSTING AND SECURITY ]
+* Hosting: AWS, Vercel, Railway, Render.
+* Deployment: Docker, GitHub Actions, separate secrets for each environment, uptime checks.
+* Security: input validation, HTTPS everywhere, user permissions, GDPR and CCPA data handling, automatic vulnerability scans.
 
-[ CUSTOM PLUGINS & API WORK ]
-* Shopify: Custom app extensions, theme extensions, Polaris admin UI, Storefront and Admin GraphQL APIs.
-* WooCommerce: Custom PHP plugins, action hooks, payment gateway integrations, automated order flows.
-* Integrations: REST APIs, GraphQL, webhook consumers, custom Model Context Protocol (MCP) tool servers.
+[ STORE ADD-ONS AND INTEGRATIONS ]
+* Shopify: custom apps, theme extensions, admin screens, the Storefront and Admin APIs.
+* WooCommerce: custom PHP plugins, payment gateways, automated order flows.
+* Integrations: REST, GraphQL, webhooks, and MCP servers for AI assistants.
 
-[ MARKETING, ADS & SEO ]
-* SEO: Technical site audits, structured schema markup, international hreflang, local Google Business optimization.
-* Paid Media: Google Ads (Search, Shopping, Performance Max), Meta Ads (Facebook & Instagram campaigns, creative testing).
-* Tracking: AWS Server-Side Google Tag Manager, Meta Conversions API (CAPI), Google Analytics 4, BigQuery, Looker Studio.
+[ MARKETING, ADS AND SEO ]
+* SEO: technical audits, schema markup, multi-language setup, Google Business Profile.
+* Ads: Google Search, Shopping and Performance Max; Facebook and Instagram campaigns with creative testing.
+* Tracking: server-side Google Tag Manager on AWS, Meta Conversions API, Google Analytics 4, BigQuery, Looker Studio.
 
-[ VOICE & CHAT SUPPORT SYSTEMS ]
-* Voice Telephony: Twilio SIP trunking, Deepgram real-time speech recognition, ElevenLabs voice synthesis, LiveKit WebRTC (sub-600ms latency).
-* Chat Automation: Multi-channel chat agents for website, WhatsApp, and email with direct CRM and database lookups.`,
+[ PHONE AND CHAT ASSISTANTS ]
+* Phone: Twilio for calls, Deepgram to understand speech, ElevenLabs for the voice, LiveKit for real-time audio. Replies come back in under 0.6\u00a0seconds.
+* Chat: assistants for your website, WhatsApp and email that can look things up in your CRM and database.`,
     meta: {
-      impact: "Full-stack coverage · Zero technical debt · Production hardened",
+      impact: "From the page your customers see to the server it runs on",
       stack: ["Next.js", "Node.js", "TypeScript", "Shopify", "WooCommerce", "AWS", "Twilio", "PostgreSQL"],
     },
   },
@@ -268,34 +260,34 @@ I select technologies based on stability, speed, and long-term maintainability f
     path: "/capabilities/websites-and-apps.md",
     icon: "Cpu",
     category: "capabilities",
-    title: "Websites, Web Apps & Dashboards",
-    subtitle: "$10K-grade digital platforms that turn visitors into paying customers.",
-    lastUpdated: "2026-10-09",
+    title: "Websites, Web Apps and Dashboards",
+    subtitle: "Websites that turn visitors into customers, and tools your team will actually use.",
+    lastUpdated: "2026-10-15",
     tags: ["WebDev", "WebApps", "SaaS", "Dashboards"],
-    content: `# Websites, Web Apps & Dashboards
+    content: `# Websites, Web Apps and Dashboards
 
-Your website is either actively generating revenue and bookings for your business, or it is an expensive digital paperweight. Most businesses struggle with websites that load slowly, look clunky on phones, and require a support ticket just to change an address or phone number.
+A business website should bring in bookings and sales. Too many load slowly, look clumsy on a phone and need a support ticket just to change the opening hours or phone number.
 
-I build $10K-grade agency websites, custom web applications, SaaS platforms, and internal operational dashboards that load in under 1.2 seconds and convert visitors into clients.
+I build websites, web apps, software products and internal dashboards that get visitors to act.
 
-[ TAILORED FOR YOUR INDUSTRY ]
-* Medical Clinics & Dental Offices: Patient appointment booking that connects directly to your calendar, online intake forms, and clean mobile layouts that build immediate trust.
-* Law Firms & Legal Practices: Authoritative, high-speed websites with confidential intake forms, practice area showcases, and local search dominance.
-* Fine Dining & Restaurants: Mobile menus that open instantly without forcing customers to download a 40MB PDF on cellular data, direct table reservations, and location directions.
-* Real Estate Brokerages: High-speed property listings, instant search filtering, high-resolution photo galleries, and direct lead routing to agents.
-* Flight Companies & Travel: Instant search interfaces, booking workflows, and clear flight schedule displays.
-* Clothing & Lifestyle Brands: Clean visual storefronts with fast product galleries, sticky purchase drawers, and smooth checkout flows.
+[ BY INDUSTRY ]
+* Clinics and dental offices: online booking tied to your calendar, intake forms, and a mobile layout patients trust.
+* Law firms: fast, credible sites with confidential intake forms, practice-area pages and strong local search results.
+* Restaurants: a menu page that reads well on a phone instead of a 40MB PDF, plus reservations and directions.
+* Real estate: fast listings, instant filters, big photo galleries and leads sent straight to the right agent.
+* Travel and flights: quick search, booking flows and clear schedules.
+* Clothing and lifestyle brands: clean storefronts, fast galleries, a buy button that stays in reach and a smooth checkout.
 
-[ WEB APPS & OPERATIONAL DASHBOARDS ]
-Beyond marketing sites, I build agency-grade web apps and internal SaaS dashboards:
-* Custom SaaS platforms with user authentication, subscription billing, and database architecture.
-* Operational dashboards where your team can view sales, inventory, bookings, and support metrics in real time.
-* Role-based permissions so team members see only the data relevant to their job.
+[ WEB APPS AND DASHBOARDS ]
+Beyond marketing sites, I build:
+* Software products with logins, subscription billing and a solid database behind them.
+* Dashboards where your team sees sales, stock, bookings and support numbers as they happen.
+* Permissions, so each person sees only the data their job needs.
 
-[ PRODUCTION STANDARDS ]
-Every website and app is built on clean, modular code with sub-1.2 second load times on mobile, 90+ Lighthouse scores, and automated backups. You get full documentation and training so your team can make everyday updates without needing me on call.`,
+[ WHAT EVERY BUILD INCLUDES ]
+Clean code, a layout built for phones and automatic backups. You also get documentation and a walkthrough, so your team can make everyday changes without calling me.`,
     meta: {
-      impact: "Sub-1.2s mobile load · 90+ Lighthouse score · All industries",
+      impact: "Built for phones · Easy for your team to update · Any industry",
       stack: ["Next.js", "React", "TypeScript", "WordPress", "Tailwind CSS", "Node.js", "PostgreSQL"],
     },
   },
@@ -306,36 +298,33 @@ Every website and app is built on clean, modular code with sub-1.2 second load t
     path: "/capabilities/ecommerce-and-plugins.md",
     icon: "Cpu",
     category: "capabilities",
-    title: "eCommerce & Custom Plugins",
-    subtitle: "Custom Shopify Plus and WooCommerce stores engineered to maximize checkout conversion.",
-    lastUpdated: "2026-10-09",
+    title: "Online Stores and Custom Add-ons",
+    subtitle: "Shopify Plus and WooCommerce stores built to turn more visitors into buyers.",
+    lastUpdated: "2026-10-15",
     tags: ["Shopify", "WooCommerce", "Plugins", "eCommerce"],
-    content: `# eCommerce & Custom Plugins
+    content: `# Online Stores and Custom Add-ons
 
-Most struggling online stores have the same root problem: they have installed thirty different third-party apps from app stores. Every app injects slow tracking scripts, adds monthly subscription costs, and introduces bugs that break the checkout flow.
+Most struggling online stores share one problem: thirty apps from the app store. Each one adds slow scripts, a monthly fee and another way for checkout to break.
 
-I solve this by building custom themes and custom plugins that handle your specific business logic natively, keeping your store fast, secure, and lean.
+I replace them with a custom theme and add-ons that do exactly what your store needs, which keeps it fast, secure and lean.
 
-[ CUSTOM SHOPIFY PLUS DEVELOPMENT ]
-* Custom theme builds from the ground up: zero commercial theme bloat, native speed, and complete design control.
-* Conversion-focused cart drawers: slide-out carts with live free-shipping progress bars, variant selectors, bundle upsells, and one-click checkout.
-* Custom Shopify app extensions and Polaris admin tools for internal operations and fulfillment teams.
-* Storefront and Admin GraphQL integrations for fast data queries and headless storefronts.
+[ SHOPIFY PLUS ]
+* Themes built from scratch, so the store carries no code it doesn't use and looks exactly how you want.
+* Slide-out carts that sell: a free-shipping progress bar, variant pickers, bundle offers and one-click checkout.
+* Custom apps and admin screens for your operations and fulfillment team.
+* Direct connections to Shopify's data for fast lookups and fully custom storefronts.
 
-[ CUSTOM WOOCOMMERCE & WORDPRESS PLUGINS ]
-* Custom PHP plugins built specifically for your store when standard marketplace add-ons do not meet your requirements.
-* Payment gateway integrations, custom shipping rules, dynamic tiered pricing, and specialized tax calculations.
-* Database query optimization and Redis object caching so your WooCommerce store handles thousands of products without slowing down.
+[ WOOCOMMERCE AND WORDPRESS ]
+* Plugins written for your store when the marketplace ones don't fit.
+* Payment gateways, custom shipping rules, tiered pricing and awkward tax rules.
+* Faster database queries and caching, so a store with thousands of products stays quick.
 
-[ WHY CUSTOM PLUGINS MATTER FOR YOUR BOTTOM LINE ]
-* Eliminates monthly recurring app fees from third-party app stores.
-* Improves mobile page speed from the 20s to the 90s, which directly increases conversion rates.
-* Prevents plugin conflicts that cause carts to fail or orders to drop during peak shopping periods.
-
-[ THE NUMBERS ]
-On a recent commerce rebuild, replacing bloated third-party apps with a custom theme and native cart logic lifted mobile PageSpeed from 22 to 94, improved checkout conversion from 1.6% to 3.8%, and helped scale annual revenue from $350K to $2.4M in 14 months.`,
+[ WHY CUSTOM PAYS FOR ITSELF ]
+* The monthly app-store fees go away.
+* Fewer third-party scripts slowing every page down.
+* Plugins stop fighting each other and breaking the cart in your busiest week.`,
     meta: {
-      impact: "+138% CVR · 94/100 PageSpeed · $2.4M ARR Scaled",
+      impact: "Custom themes · No app-store bloat · Shopify Plus and WooCommerce",
       stack: ["Shopify Liquid", "Shopify GraphQL API", "PHP", "WooCommerce", "Tailwind CSS", "Stripe"],
     },
   },
@@ -346,42 +335,42 @@ On a recent commerce rebuild, replacing bloated third-party apps with a custom t
     path: "/capabilities/voice-and-chat-agents.md",
     icon: "PhoneCall",
     category: "capabilities",
-    title: "Voice & Chat Support Agents",
-    subtitle: "Your phones get answered on the first ring. Your support ticket volume drops 70%.",
-    lastUpdated: "2026-10-09",
+    title: "Phone and Chat Assistants",
+    subtitle: "Every call answered on the first ring, and 70% fewer routine support tickets.",
+    lastUpdated: "2026-10-15",
     tags: ["VoiceAgents", "ChatAgents", "CustomerSupport", "Telephony"],
-    content: `# Voice & Chat Support Agents
+    content: `# Phone and Chat Assistants
 
-Think about the twenty most common phone calls and chat messages your business receives every single day.
+Think about the questions your business hears every day:
 "What are your hours today?"
-"Can I book an appointment for Thursday?"
-"Where is my order?"
-"Do you accept my insurance?"
-"What are your prices?"
+"Can I book for Thursday?"
+"Where's my order?"
+"Do you take my insurance?"
+"How much is it?"
 
-Your front desk or support staff spends four to six hours every day repeating the exact same answers. That wastes valuable staff time, creates long hold queues, and causes after-hours callers to hang up and call your competitor.
+Your front desk spends four to six hours a day giving the same answers. Callers wait on hold, and the ones who ring after hours hang up and call a competitor.
 
-I build professional voice agents that answer your phone lines instantly and chat agents that resolve questions on your website or WhatsApp around the clock.
+I build phone assistants that pick up instantly and chat assistants that answer on your website or WhatsApp at any hour. You can call mine with the button above.
 
-[ PROFESSIONAL VOICE AGENTS ]
-* Instant phone pickup: Answers on the very first ring, 24/7/365. No busy signals, no hold music, and no missed opportunities after business hours.
-* Natural human conversation: Operates with sub-600ms latency. The caller experiences natural conversation without the awkward three-second robotic delay common in amateur setups.
-* Real actions: Checks availability, books appointments into your calendar, looks up order tracking numbers, and sends SMS confirmation links directly to the caller's phone.
-* Smart escalation: If a caller has an urgent or highly sensitive issue, the agent immediately transfers the call to a human staff member with context.
-* Telephony stack: Twilio SIP, Deepgram for real-time speech-to-text, ElevenLabs for voice synthesis, and LiveKit WebRTC.
+[ PHONE ASSISTANTS ]
+* They answer on the first ring, 24 hours a day, so nobody hits a busy signal or hold music.
+* They sound natural. Replies come back in under 0.6\u00a0seconds, without the three-second robot pause callers hate.
+* They do real work: check availability, book appointments into your calendar, look up orders and text the caller a confirmation.
+* They know when to hand off. Urgent or sensitive calls go straight to a staff member, with notes about the caller on screen.
+* Built with Twilio, Deepgram, ElevenLabs and LiveKit.
 
-[ AI CHAT SUPPORT AGENTS ]
-* Multi-channel support: Deployed directly on your website, WhatsApp, or email inbox.
-* Resolves 70%+ of routine customer inquiries without requiring human staff intervention.
-* Trained on your exact business policies, pricing tiers, services, and brand tone.
-* Grounded in real customer support experience: Because I have personally handled customer support across phone, chat, and email, I design conversational flows that de-escalate tension and solve problems quickly.
+[ CHAT ASSISTANTS ]
+* They run on your website, WhatsApp or email inbox.
+* They handle 70%+ of routine questions without a staff member stepping in.
+* They learn your policies, prices, services and tone of voice.
+* I've answered phones, chats and emails for real businesses myself, so the conversations are written to calm people down and solve the problem quickly.
 
-[ WHO BENEFITS MOST ]
-Medical clinics, dental practices, law firms, fine dining restaurants, real estate agencies, flight booking services, service contractors, and high-volume online stores.`,
+[ WHO IT HELPS MOST ]
+Clinics, dental practices, law firms, restaurants, real estate agencies, flight booking services, contractors and busy online stores.`,
     meta: {
-      impact: "Sub-600ms voice latency · 70% routine inquiry resolution · Zero hold queues",
-      telephony: "Twilio SIP + Deepgram + ElevenLabs",
-      latency: "Sub-600ms Roundtrip",
+      impact: "Replies in under 0.6\u00a0s · 70% of routine questions handled · No hold queue",
+      telephony: "Twilio + Deepgram + ElevenLabs",
+      latency: "Under 0.6 seconds",
       stack: ["Twilio", "Deepgram", "ElevenLabs", "LiveKit WebRTC", "Node.js", "Python"],
       audioSample: {
         callerText: "Hi, I need to check if my booking for tomorrow at 2 PM is confirmed, and what documents I should bring.",
@@ -397,39 +386,39 @@ Medical clinics, dental practices, law firms, fine dining restaurants, real esta
     path: "/capabilities/marketing-seo-and-ads.md",
     icon: "Cpu",
     category: "capabilities",
-    title: "Product Marketing, Ads & SEO",
-    subtitle: "High-impact creative campaigns, scaled ad accounts, and rankings that produce paying clients.",
-    lastUpdated: "2026-10-09",
+    title: "Marketing, Ads and SEO",
+    subtitle: "Campaigns, ad accounts and search rankings that bring in paying customers.",
+    lastUpdated: "2026-10-15",
     tags: ["Marketing", "GoogleAds", "MetaAds", "SEO", "Attribution"],
-    content: `# Product Marketing, Ads & SEO
+    content: `# Marketing, Ads and SEO
 
-Marketing and technical engineering are not separate disciplines. The best ad campaigns in the world will fail if the landing page takes four seconds to load or if your tracking pixels miss 30% of actual sales. I connect marketing strategy with technical execution to drive measurable business growth.
+A great ad still fails when the landing page takes four seconds to load or the tracking misses 30% of sales. I handle the marketing and the technical side together, so the numbers add up.
 
-[ PRODUCT MARKETING & CREATIVE CAMPAIGNS ]
-* Agency-grade creative direction for physical products, services, and software brands.
-* Modern generative production workflows: producing high-resolution product photography, video concepts, and ad variants quickly without $25,000 agency studio fees.
-* High-converting landing page design that matches ad messaging directly to on-page offers.
+[ CAMPAIGNS AND CREATIVE ]
+* Creative direction for products, services and software.
+* Product photos, video concepts and ad variations made quickly with generative tools, without a $25,000 studio bill.
+* Landing pages that deliver exactly what the ad promised.
 
-[ GOOGLE & META ADS MANAGEMENT ]
-* Google Ads: High-intent Search campaigns, Google Shopping feed architecture, and Performance Max campaigns with disciplined negative keyword filtering.
-* Meta Ads: Facebook and Instagram campaign structuring, audience segmentation, creative testing cycles, and retargeting flows.
-* Budget scaling: Reallocating spend toward proven creative assets and managing frequency to prevent ad fatigue.
+[ GOOGLE AND META ADS ]
+* Google: search campaigns aimed at people ready to buy, Shopping feeds, and Performance Max with careful keyword exclusions.
+* Meta: Facebook and Instagram campaigns, audience targeting, creative testing and retargeting.
+* Scaling: moving budget to the ads that sell and refreshing creative before people tire of it.
 
-[ THE SERVER-SIDE TRACKING ADVANTAGE ]
-Most business ad accounts are losing money because their tracking is broken. Browser pixels on modern smartphones miss up to 35% of purchases due to iOS privacy measures and ad blockers. When your ad platform only sees a fraction of your sales, its algorithm optimizes against incomplete data.
+[ WHY SERVER TRACKING MATTERS ]
+On phones, browser tracking misses up to 35% of purchases because of iPhone privacy settings and ad blockers. When Google and Meta see only part of your sales, they spend your budget on the wrong people.
 
-I solve this by deploying server-side Meta Conversions API (CAPI) and Google Tag Manager on AWS. Purchase data routes directly from your server to the ad platform with full encryption. The ad algorithms receive 100% of purchase signals, enabling them to find higher-value buyers at a lower cost per acquisition. Over $400K in client ad spend has been managed through this infrastructure.
+I send purchase data from your server straight to the ad platforms, encrypted, so they see every sale and can find better buyers for less.
 
-[ PROFESSIONAL SEO (LOCAL, NATIONAL & INTERNATIONAL) ]
-* Local SEO: Google Business Profile optimization, local citations, and geo-targeted pages that rank medical clinics, law firms, and restaurants in local map packs.
-* Technical SEO: Clean schema markup, crawl budget optimization, multilingual hreflang architecture, and Core Web Vitals compliance.
-* Content Architecture: Structuring service pages so Google understands your expertise and ranks your site above competitors.
+[ SEO ]
+* Local: Google Business Profile, local listings and city pages that put clinics, law firms and restaurants in the map results.
+* Technical: schema markup, crawl tuning, multi-language setup and fast pages.
+* Structure: service pages organized so Google understands what you do and ranks you above competitors.
 
-[ SOCIAL MEDIA MANAGEMENT ]
-* Strategic account growth, content planning, and scheduling across Instagram, TikTok, LinkedIn, and Facebook.
-* Audience engagement and brand positioning that turns followers into qualified leads.`,
+[ SOCIAL MEDIA ]
+* Growth, content planning and scheduling on Instagram, TikTok, LinkedIn and Facebook.
+* Replies, community and positioning that turn followers into leads.`,
     meta: {
-      impact: "$400K+ Ad Spend Managed · +30% Signal Recovery · Top Local & National Rankings",
+      impact: "Google and Meta ads · 30%+ more sales tracked · Local and national rankings",
       stack: ["Server GTM", "Meta CAPI", "Google Ads", "AWS", "BigQuery", "Looker Studio"],
     },
   },
@@ -440,80 +429,150 @@ I solve this by deploying server-side Meta Conversions API (CAPI) and Google Tag
     path: "/capabilities/api-and-mcp-integrations.md",
     icon: "Layers",
     category: "capabilities",
-    title: "API Integrations & Custom MCP Servers",
-    subtitle: "Connecting disconnected business tools into reliable, automated systems.",
-    lastUpdated: "2026-10-09",
+    title: "Connecting Your Tools",
+    subtitle: "Your bookings, payments, CRM and stock systems passing data to each other on their own.",
+    lastUpdated: "2026-10-15",
     tags: ["API", "Integration", "MCP", "Webhooks", "Backend"],
-    content: `# API Integrations & Custom MCP Servers
+    content: `# Connecting Your Tools
 
-Most businesses waste dozens of hours every week because their core tools do not talk to each other. Your website bookings do not sync with your internal calendar. Your online store does not update your warehouse stock. Your team is stuck manually exporting spreadsheets and copying data from one screen to another.
+Many businesses lose hours every week because their tools don't share data. Website bookings never reach the calendar, store sales don't update the warehouse, and someone ends up copying rows between spreadsheets.
 
-I build custom APIs, webhook listeners, and tool integrations that connect any platform to any platform reliably.
+I build the connections that move that data automatically and reliably.
 
 [ WHAT I BUILD ]
-* Third-Party System Integrations: Connecting payment processors (Stripe, PayPal), CRMs (HubSpot, Salesforce), shipping providers, booking engines, and accounting platforms.
-* Custom REST & GraphQL Endpoints: Building secure, documented APIs for your mobile applications, internal dashboards, and external partners.
-* Real-Time Webhook Pipelines: Event-driven workflows that react immediately when an order is placed, an appointment is booked, or a form is submitted.
-* Custom Model Context Protocol (MCP) Servers: Building specialized MCP servers that allow modern AI agents to interact safely with your internal databases and business tools.
-* Process Automation: Replacing repetitive manual data entry with background workers that run reliably with automated retry logic and alerting.
+* Links to payment processors (Stripe, PayPal), CRMs (HubSpot, Salesforce), shipping, booking and accounting tools.
+* Custom APIs for your mobile apps, dashboards and partners, secured and documented.
+* Instant triggers: when an order comes in, a booking is made or a form is sent, the next step runs on its own.
+* MCP servers that let AI assistants use your business tools and databases safely.
+* Background jobs that replace manual data entry, with automatic retries and alerts.
 
-[ RELIABILITY & PRODUCTION STANDARDS ]
-* Full error handling with automatic retry queues so a temporary network hiccup never loses customer data.
-* Webhook signature verification and encrypted API credentials for complete security.
-* Clear documentation so any technical team member can inspect how data flows through the system.
+[ RELIABILITY ]
+* Failed requests retry on their own, so a network blip never loses customer data.
+* Incoming messages are signature-checked and credentials are encrypted.
+* Documentation shows any developer how the data flows.
 
-[ REAL EXAMPLES ]
-* Storefront to warehouse synchronization: Bi-directional inventory updates with automatic anomaly alerts.
-* Custom store operations tool wired into team chat: 28 live commands to query inventory, revenue, and fulfillment without logging into admin portals.
-* Server-side conversion routing: Secure event pipelines delivering verified transaction records directly to ad platform endpoints.`,
+[ EXAMPLES ]
+* Store-to-warehouse sync: stock updates both ways, with alerts when the numbers look wrong.
+* A store bot in team chat with 28 commands for stock, revenue and orders, so nobody has to open the admin.
+* Sales sent from the server straight to ad platforms, verified and secure.`,
     meta: {
-      impact: "Zero manual data re-entry · 100% data consistency · Automated failover",
+      impact: "No manual re-entry · Data matches everywhere · Recovers from outages on its own",
       stack: ["Node.js", "TypeScript", "Python", "REST", "GraphQL", "Webhooks", "MCP Protocol"],
     },
   },
 
-  "project-ecommerce": {
-    id: "project-ecommerce",
-    name: "high-volume-ecommerce.md",
-    path: "/projects/high-volume-ecommerce.md",
+  "project-foody": {
+    id: "project-foody",
+    name: "foody-restaurant-platform.md",
+    path: "/projects/foody-restaurant-platform.md",
     icon: "Layers",
     category: "projects",
-    title: "Case Study · High-Volume Commerce Rebuild",
-    subtitle: "Rebuilding a luxury apparel platform from 22 to 94 PageSpeed and scaling to $2.4M ARR.",
-    lastUpdated: "2026-10-09",
-    tags: ["CaseStudy", "ShopifyPlus", "eCommerce", "Performance"],
-    content: `# Case Study: High-Volume Commerce Rebuild
+    title: "Product Build · Foody Restaurant Platform",
+    subtitle: "A restaurant website and staff admin that keeps the menu, hours and photos current without a developer.",
+    lastUpdated: "2026-10-15",
+    tags: ["ProductBuild", "Restaurants", "React", "AdminDashboard", "Remotion"],
+    content: `# Product Build: Foody Restaurant Platform
 
-[ THE SITUATION ]
-A growing luxury apparel brand was spending heavily on customer acquisition, but their online store was struggling under technical bloat. The site relied on a commercial template loaded down with over twenty-five third-party apps. Mobile page load took over five seconds, the Google PageSpeed score was 22 out of 100, and checkout conversion hovered at 1.6%.
+[ THE PROBLEM ]
+Plenty of independent restaurants cook better food than the place down the street and still have empty tables on a Friday. A guest searches for them and finds a blurry PDF menu, opening hours from last season, or a delivery-app listing that keeps 15 to 30% of every order.
 
-Every extra second of load time was costing them real buyers at the final payment step.
+Foody is a restaurant website and staff admin built for that owner. The public site answers what guests want to know first: whether you're open, where you are and what's on the menu. The owner keeps those answers current from the admin, with no developer involved and no commission on the order.
 
-[ WHAT I DID ]
-1. Built a Custom Theme from Scratch:
-   Replaced the bloated commercial template with a custom Shopify Plus theme. Handled features like variant pickers, currency switching, and size recommendations natively in clean Liquid and JavaScript without third-party app scripts. Mobile PageSpeed jumped from 22 to 94.
+[ WHAT GUESTS SEE ]
+* Open-now status, street address and phone number in the first screen of the homepage.
+* A real menu page instead of a PDF: search by dish or ingredient, or filter by category, Chef's picks, plant-based or what the kitchen has today.
+* A photo, price and description on every dish, and a Sold out tag the moment the kitchen runs out.
+* A gallery of the food and the room, and a contact page with the weekly service schedule and a message form.
+* Every page in English and French.
 
-2. Engineered a Custom Slide-Out Cart:
-   Created a custom cart drawer featuring a dynamic free-shipping progress indicator, product bundle recommendations, and a streamlined one-click checkout transition.
+[ WHAT STAFF CONTROL ]
+* Menu: add dishes, change prices, swap photos, and switch availability or featured status. Changes are live immediately.
+* Categories, food photos and the restaurant gallery, each on its own screen.
+* Messages: inquiries from the contact form land in an inbox inside the admin.
+* A dashboard with counts for dishes, availability, featured items, categories and gallery photos.
 
-3. Deployed AWS Server-Side Meta Conversions API:
-   Configured server-side event routing on AWS to bypass browser tracking loss. Restored 32% of previously lost purchase signals, giving the ad algorithms the data needed to target high-intent buyers.
+[ HOW IT IS BUILT ]
+* A React app built with Vite and styled with Tailwind CSS.
+* One brand system on every page: Big Shoulders for headlines, Barlow for body text, one red (#dc2626).
+* Visitors with JavaScript turned off still get the contact details, so they can call or walk in.
 
-4. Automated Operational Notifications:
-   Set up automated SMS and email notifications for order confirmations and tracking updates, reducing inbound "where is my order" support questions.
+[ THE SHOWCASE FILM ]
+The 79-second film above is pitched at restaurant owners. It follows one owner from a half-empty Friday to a full room: the search, the PDF menu and the commission receipt, then the live site and the admin doing the work. I built it frame by frame in Remotion, with voiceover, music and about 50 sound effects from Epidemic Sound, mixed to the standard loudness for web video. The product footage comes from the live site; the delivery receipt is illustrative.
 
-[ THE RESULTS ]
-* Mobile PageSpeed: 22 → 94 / 100
-* Mobile Checkout Conversion: 1.6% → 3.8%
-* Average Order Value: +23% lift
-* Annual Run Rate: Scaled from $350K to $2.4M in 14 months
-
-Same product line. Consistent ad budget. Just a properly engineered store that made buying frictionless.`,
+[ LINKS ]
+* Live site: [foody.whoax.com](https://foody.whoax.com)`,
     meta: {
-      client: "Luxury Apparel Brand",
-      timeline: "14 months",
-      impact: "+138% Conversion Lift · $2.4M ARR · 94/100 PageSpeed",
-      stack: ["Shopify Plus", "Liquid", "AWS Server GTM", "Meta CAPI", "JavaScript"],
+      client: "Product build for independent restaurants",
+      timeline: "Live · 79-second showcase film",
+      impact: "Direct menu, no delivery-app commission · Staff edits go live immediately · English and French",
+      stack: ["React", "Vite", "Tailwind CSS", "Remotion", "Epidemic Sound"],
+      liveUrl: "https://foody.whoax.com",
+      videoPreview: {
+        src: "/projects/foody/foody-showcase.mp4",
+        title: "Fill More Tables · Foody in 79 Seconds",
+        durationSec: 79,
+        fileName: "FOODY_SHOWCASE.mp4",
+        poster: "/projects/foody/poster.jpg",
+        note: "A 79-second film for restaurant owners · Click to play with sound",
+        scanlines: false,
+        chapters: [
+          { label: "01 // HOOK", sub: "The empty Friday", timeSec: 0 },
+          { label: "02 // PROBLEM", sub: "PDF menu, app fees", timeSec: 6.4 },
+          { label: "03 // TURN", sub: "Meet Foody", timeSec: 17.2 },
+          { label: "04 // HOME", sub: "Hours, address, phone", timeSec: 21.6 },
+          { label: "05 // MENU", sub: "Real photo, real price", timeSec: 31.4 },
+          { label: "06 // ADMIN", sub: "Ten-second edits", timeSec: 46.2 },
+          { label: "07 // MARGINS", sub: "No commission", timeSec: 62.2 },
+          { label: "08 // CLOSE", sub: "Full house", timeSec: 67.4 },
+        ],
+      },
+      gallery: [
+        {
+          src: "/projects/foody/home-1920.webp",
+          srcSmall: "/projects/foody/home-960.webp",
+          width: 1920,
+          height: 1080,
+          label: "home",
+          alt: "Foody homepage hero with the FOODY wordmark, a smash burger photo, and open-now status, address and phone along the bottom",
+          caption: "Open-now status, address and phone sit in the first screen, under the signature dish and its price.",
+        },
+        {
+          src: "/projects/foody/menu-1920.webp",
+          srcSmall: "/projects/foody/menu-960.webp",
+          width: 1920,
+          height: 1080,
+          label: "menu",
+          alt: "Foody menu page with a dish search field and category tabs for burgers, sandwiches, plates, starters, salads, desserts, drinks and chef's specials",
+          caption: "Search by dish or ingredient, then filter by category, Chef's picks or plant-based.",
+        },
+        {
+          src: "/projects/foody/sold-out-1920.webp",
+          srcSmall: "/projects/foody/sold-out-960.webp",
+          width: 1920,
+          height: 1080,
+          label: "availability",
+          alt: "Burger cards on the Foody menu, with the Blue Cheese and Fig burger marked Sold out",
+          caption: "Switch a dish off in the admin and the menu shows Sold out on the next load.",
+        },
+        {
+          src: "/projects/foody/admin-menu-1920.webp",
+          srcSmall: "/projects/foody/admin-menu-960.webp",
+          width: 1920,
+          height: 1080,
+          label: "admin",
+          alt: "Foody staff admin menu table listing dishes with image, category, price, and availability and featured toggles",
+          caption: "Staff admin: every dish with its price, category, and availability and featured switches.",
+        },
+        {
+          src: "/projects/foody/contact-1920.webp",
+          srcSmall: "/projects/foody/contact-960.webp",
+          width: 1920,
+          height: 1080,
+          label: "contact",
+          alt: "Foody contact page with address, phone, weekly service schedule and a message form",
+          caption: "Weekly service schedule beside a message form that feeds the admin inbox.",
+        },
+      ],
     },
   },
 
@@ -523,39 +582,42 @@ Same product line. Consistent ad budget. Just a properly engineered store that m
     path: "/projects/voice-support-pipeline.md",
     icon: "PhoneCall",
     category: "projects",
-    title: "Case Study · Automated Voice & Telephony Pipeline",
-    subtitle: "Answering phone inquiries with sub-600ms latency and reducing staff call volume by 68%.",
-    lastUpdated: "2026-10-09",
+    title: "Case Study · AI Phone Assistant",
+    subtitle: "Calls answered in under 0.6\u00a0seconds, and 68% of routine calls taken off the front desk.",
+    lastUpdated: "2026-10-15",
     tags: ["CaseStudy", "VoiceAgent", "Telephony", "Support"],
-    content: `# Case Study: Automated Voice & Telephony Pipeline
+    content: `# Case Study: AI Phone Assistant
 
 [ THE SITUATION ]
-A multi-location service business was receiving over 120 phone calls every day. The front-desk team was spending more than four hours daily answering the exact same set of questions: confirming clinic hours, rescheduling appointments, and explaining service pricing.
+A service business with several locations was getting more than 120 calls a day. The front desk spent over four hours a day on the same questions: opening hours, rescheduling and prices.
 
-During peak afternoon hours, callers were placed on long holds or sent to voicemail. Over 25% of after-hours callers hung up without leaving a message, costing the business dozens of potential client bookings each week.
+During the afternoon rush, callers sat on hold or went to voicemail. More than 25% of after-hours callers hung up without leaving a message, which cost the business dozens of bookings every week.
 
 [ WHAT I DID ]
-1. Engineered an Inbound Voice Telephony Agent:
-   Connected Twilio SIP trunking to Deepgram for real-time speech-to-text and ElevenLabs for natural human voice synthesis. Tuned the audio streaming pipeline using WebRTC to achieve a sub-600ms roundtrip response time. Callers heard an immediate, natural response without robotic hesitation.
+1. Built a phone assistant on Twilio, Deepgram and ElevenLabs, and tuned the audio so it replies in under 0.6\u00a0seconds. Callers get an answer straight away, without the robotic pause.
+2. Connected it to the booking software. When someone asks to book or move an appointment, it checks real availability, holds the slot and texts a confirmation to the caller.
+3. Added a handoff to staff. If a caller is upset or needs an expert, the call moves to someone on duty, with notes about the caller on their screen.
 
-2. Direct Calendar & Database Integration:
-   Wired the voice agent directly into the company's scheduling software via secure REST APIs. When a caller asks to book or reschedule, the agent checks live availability, reserves the slot, and sends an immediate SMS confirmation to the caller's mobile device.
+[ RESULTS ]
+* 68% of routine calls handled start to finish without the front desk.
+* Average reply time under 0.6\u00a0seconds.
+* Every after-hours and weekend call answered on the first ring.
+* More than 15 staff hours a week freed up for the people standing at the desk.
 
-3. Seamless Human Escalation:
-   Programmed intelligent fallback triggers. If a caller expresses distress or has a complex inquiry requiring professional consultation, the call transfers immediately to an on-duty staff member with caller background notes displayed on their screen.
-
-[ THE RESULTS ]
-* 68% of routine inbound calls resolved completely without front-desk staff intervention.
-* Sub-600ms average conversational response latency.
-* 100% of after-hours and weekend calls answered immediately on the first ring.
-* Over 15 hours of staff time saved each week, allowing the front desk to focus on in-person clients.`,
+[ TRY IT ]
+Press "call my AI assistant" above and ask about anything on this site. It's built the same way: it waits until you've finished talking, stops when you cut in, and ignores quieter voices in the room.`,
     meta: {
-      client: "Multi-Location Service Group",
-      timeline: "3 weeks to deployment",
-      impact: "68% Call Volume Deflected · Sub-600ms Latency · Zero Missed Calls",
-      telephony: "Twilio SIP + Deepgram + ElevenLabs",
-      latency: "Sub-600ms Roundtrip",
+      client: "Multi-location service business",
+      timeline: "Live in 3 weeks",
+      impact: "68% of routine calls handled · Replies in under 0.6\u00a0s · No missed calls",
+      telephony: "Twilio + Deepgram + ElevenLabs",
+      latency: "Under 0.6 seconds",
       stack: ["Twilio", "Deepgram", "ElevenLabs", "LiveKit WebRTC", "Node.js", "REST APIs"],
+      audioSample: {
+        callerText: "Hi, can you tell me what Reda builds and how to get a quote?",
+        agentText: "He builds websites, online stores and AI phone assistants. For a quote, email reda at whoax dot com.",
+        durationSec: 10,
+      },
     },
   },
 
@@ -565,33 +627,33 @@ During peak afternoon hours, callers were placed on long holds or sent to voicem
     path: "/projects/shopify-discord-agent.md",
     icon: "Layers",
     category: "projects",
-    title: "Open Source · Shopify Store Operations Monitor",
-    subtitle: "28 live operations tools piped directly into Discord via GraphQL and Docker.",
-    lastUpdated: "2026-10-09",
+    title: "Open Source · Shopify Store Bot for Discord",
+    subtitle: "28 store commands inside your team's Discord, free and open source.",
+    lastUpdated: "2026-10-15",
     tags: ["OpenSource", "Shopify", "Discord", "GraphQL", "Docker"],
-    content: `# Open Source: Shopify Store Operations Monitor
+    content: `# Open Source: Shopify Store Bot for Discord
 
-Most eCommerce operators check their store numbers by constantly opening browser tabs and refreshing dashboards. Switching between inventory spreadsheets, order queues, and team chat creates friction and delays urgent decisions.
+Most store owners check their numbers by opening tab after tab. Jumping between stock sheets, order queues and team chat slows down the decisions that can't wait.
 
-I built and open-sourced a full operations monitor that brings store intelligence directly into team chat.
+So I built a free, open-source bot that brings the store's numbers into team chat.
 
 [ WHAT IT DOES ]
-* 28 Live Operational Commands: Query current stock counts, order queues, gross revenue, refund spikes, and active discounts directly from chat commands.
-* Automated Incident Alerts: Sends instant alerts if an item drops below reorder thresholds or if an unusually high refund rate is detected.
-* Direct Shopify Admin GraphQL Integration: Bypasses REST API rate limits and queries live store data with minimal latency.
-* Dockerized Deployment: Packaged in a lightweight Docker container for one-command deployment to any cloud server or VPS.
+* 28 commands for stock levels, order queues, revenue, refund spikes and active discounts.
+* Alerts when an item drops below its reorder point or refunds suddenly jump.
+* Reads live store data through Shopify's GraphQL API, which is faster and avoids the rate limits of the older REST API.
+* Ships as one Docker container, so it starts with a single command on any server.
 
-[ WHY OPERATORS USE IT ]
-Instead of paying for multiple third-party SaaS dashboard subscriptions or giving full admin access to every team member, operators can check store status from the same chat app where they already collaborate.
+[ WHY OWNERS USE IT ]
+It replaces paid dashboard subscriptions, and the team can check the store from the chat app they already use without everyone needing full admin access.
 
-[ REPOSITORY & CODE ]
+[ CODE ]
 * GitHub: [github.com/Ai-assistant-KIRA/shopify-discord-agent](https://github.com/Ai-assistant-KIRA/shopify-discord-agent)
 * License: MIT
-* Technology: Node.js, TypeScript, Shopify Admin GraphQL API, Docker`,
+* Built with Node.js, TypeScript, the Shopify Admin GraphQL API and Docker`,
     meta: {
-      client: "Open-Source Community",
-      timeline: "Active & Maintained",
-      impact: "28 automated store tools · Zero SaaS subscription cost",
+      client: "Open source",
+      timeline: "Active and maintained",
+      impact: "28 store commands · No subscription fees",
       stack: ["Node.js", "TypeScript", "Shopify GraphQL", "Docker"],
       liveUrl: "https://github.com/Ai-assistant-KIRA/shopify-discord-agent",
     },
@@ -603,35 +665,30 @@ Instead of paying for multiple third-party SaaS dashboard subscriptions or givin
     path: "/projects/api-and-integrations.md",
     icon: "Layers",
     category: "projects",
-    title: "Systems Case · Enterprise API & MCP Tool Server",
-    subtitle: "Connecting distributed business tools and enabling secure AI agent workflows.",
-    lastUpdated: "2026-10-09",
+    title: "Case Study · One Hub for Three Business Systems",
+    subtitle: "A CRM, billing and inventory kept in sync, with safe access for AI assistants.",
+    lastUpdated: "2026-10-15",
     tags: ["API", "MCP", "Webhooks", "Architecture", "Backend"],
-    content: `# Systems Case: Enterprise API & MCP Tool Server
+    content: `# Case Study: One Hub for Three Business Systems
 
-[ THE CHALLENGE ]
-A growing company used three separate platforms: a customer CRM, a custom billing portal, and an inventory management system. Because these systems were completely disconnected, staff spent hours manually copying customer orders into spreadsheets, which led to frequent shipping delays and billing discrepancies.
+[ THE PROBLEM ]
+A growing company ran three separate systems: a CRM, a custom billing portal and an inventory system. None of them shared data, so staff spent hours copying orders into spreadsheets, and shipping delays and billing mistakes kept happening.
 
-They also wanted to enable modern AI tools to answer questions about customer accounts and inventory without exposing raw database credentials.
+They also wanted AI tools to answer questions about accounts and stock without handing out database passwords.
 
-[ THE SOLUTION ]
-1. Unified API Gateway in Node.js & TypeScript:
-   Engineered a central REST and GraphQL service that synchronized customer data and inventory levels in real time across all three platforms.
+[ WHAT I BUILT ]
+1. A central service in Node.js and TypeScript that keeps customer and stock data in sync across all three systems in real time.
+2. A listener for incoming updates that checks each message's signature and retries with growing delays. When a partner service went down for a while, transactions waited in a queue and went through once it came back.
+3. A secure MCP server with a fixed set of business tools. The team can ask their AI assistant about stock, order history or summaries in plain English, without touching the database directly.
 
-2. Webhook Event Bus with Automatic Retries:
-   Built a webhook listener with cryptographic signature verification and exponential backoff retries. If an external service experienced brief downtime, transactions queued safely and processed automatically upon recovery.
-
-3. Custom Model Context Protocol (MCP) Server:
-   Built a secure MCP server exposing controlled business tools. Team members can now query inventory levels, check order histories, and generate summaries using natural language in their AI assistant without direct database access.
-
-[ THE OUTCOME ]
-* Eliminated manual data re-entry, saving the operations team over 20 hours each week.
-* 100% data consistency across billing, CRM, and inventory databases.
-* Secure, role-restricted AI tool access with audit logs on every request.`,
+[ RESULTS ]
+* Manual re-entry is gone, saving the operations team more than 20 hours a week.
+* Billing, CRM and inventory always show the same numbers.
+* AI access is limited by role, and every request is logged.`,
     meta: {
-      client: "Enterprise Services Client",
+      client: "Enterprise services client",
       timeline: "4 weeks",
-      impact: "Zero manual data sync · 100% data consistency · Secure MCP tools",
+      impact: "No manual syncing · Data always matches · Secure AI access",
       stack: ["Node.js", "TypeScript", "REST", "GraphQL", "Webhooks", "MCP Protocol", "Redis"],
     },
   },
@@ -642,19 +699,19 @@ They also wanted to enable modern AI tools to answer questions about customer ac
     path: "/field-studies/canvas-matrix-engine.md",
     icon: "Terminal",
     category: "field-studies",
-    title: "Field Study · 60 FPS TypeScript Canvas Matrix Engine",
-    subtitle: "Generative ASCII background with cursor physics and zero external libraries.",
-    lastUpdated: "2026-10-09",
+    title: "Field Study · The ASCII Background",
+    subtitle: "An animated background that runs at 60 FPS on plain TypeScript, with no libraries.",
+    lastUpdated: "2026-10-15",
     tags: ["Canvas", "TypeScript", "CreativeCoding", "Performance"],
-    content: `# Field Study: 60 FPS TypeScript Canvas Matrix Engine
+    content: `# Field Study: The ASCII Background
 
-The visual background on this website is not a video file, not an animated GIF, and not a bloated third-party library. It is a custom TypeScript canvas renderer running at 60 FPS in your browser.
+The ASCII background on this site is drawn live in your browser, up to 60 times a second, by my own TypeScript code with no animation library behind it.
 
 [ HOW IT WORKS ]
-* Dynamic Grid Calculation: Grid columns and character rows calculate on the fly based on your viewport size and device pixel ratio.
-* Independent Particle Velocities: Each character stream maintains an independent fall velocity and probabilistic reset to sustain balanced visual density.
-* Interactive Cursor Physics: Moving your mouse creates a localized disturbance vector. Characters within the ripple radius deflect radially with spring dampening and return smoothly to their grid positions.
-* Zero GPU Lag: Pure canvas mathematics with minimal CPU and memory overhead.
+* The grid sizes itself to your screen and its pixel density.
+* Each column of characters falls at its own speed and resets at random, which keeps the screen evenly filled.
+* Your cursor pushes nearby characters away, and they spring back into place when it moves on.
+* It's plain canvas math, so it stays light on memory and on your processor.
 
 \`\`\`typescript
 // Cursor disturbance calculation with spring dampening
@@ -668,11 +725,11 @@ if (distance < RIPPLE_RADIUS) {
 }
 \`\`\`
 
-Move your mouse over the background to see the physics in action. You can also toggle the 3D Meadow engine in the bottom-right corner, which is an interactive WebGL physics simulation also built from scratch.`,
+To try it, switch the background to ASCII with the button in the bottom-right corner and move your mouse across the screen. The other background, the 3D meadow, is a WebGL scene I built with three.js.`,
     meta: {
       timeline: "Live on this site",
-      impact: "60 FPS rendering · Zero external visual libraries · Under 30KB code",
-      stack: ["HTML5 Canvas", "TypeScript", "WebGL", "Physics Math"],
+      impact: "60 FPS · No libraries · Under 30KB of code",
+      stack: ["HTML5 Canvas", "TypeScript"],
     },
   },
 
@@ -682,34 +739,34 @@ Move your mouse over the background to see the physics in action. You can also t
     path: "/contact.md",
     icon: "Mail",
     category: "root",
-    title: "Contact & Availability",
-    subtitle: "Tell me what you need built or fixed. I will give you an honest evaluation.",
-    lastUpdated: "2026-10-09",
+    title: "Contact",
+    subtitle: "Tell me what you need built or fixed, and I'll tell you honestly how I'd handle it.",
+    lastUpdated: "2026-10-15",
     tags: ["Contact", "Hire", "Availability"],
-    content: `# Contact & Availability
+    content: `# Contact
 
-I am available for fixed-scope engineering builds and ongoing monthly retainers across web development, custom applications, eCommerce plugins, voice support agents, and growth infrastructure.
+I take fixed-price projects and monthly retainers: websites, web apps, store add-ons, phone assistants and marketing setups.
 
-[ DIRECT CONTACT ]
+[ REACH ME ]
 * Email: [reda@whoax.com](mailto:reda@whoax.com)
 * LinkedIn: [linkedin.com/in/reda-alaarabi](https://www.linkedin.com/in/reda-alaarabi/)
 * GitHub: [github.com/Ai-assistant-KIRA](https://github.com/Ai-assistant-KIRA)
 * Website: [whoax.com](https://whoax.com)
 
-[ ENGAGEMENT OPTIONS ]
-* Fixed-Scope Projects: For new websites, web apps, custom plugins, voice telephony agents, or tracking setups. Defined deliverables, clear milestone timelines, and fixed pricing.
-* Monthly Retainers: For growing businesses that need ongoing engineering, feature additions, ad scaling, SEO management, and continuous system monitoring.
-* Technical Advisory & Audits: Code audits, speed optimization, and architecture reviews for teams needing expert guidance.
+[ WAYS TO WORK TOGETHER ]
+* Fixed-price project: a new website, app, plugin, phone assistant or tracking setup, with clear deliverables, milestones and one agreed price.
+* Monthly retainer: ongoing development, new features, ads, SEO and monitoring for a growing business.
+* Review and advice: code reviews, speed fixes and architecture advice for teams that want a second opinion.
 
 [ WHAT TO SEND ]
-Send an email to reda@whoax.com with a short summary of:
-1. What you want to build, what is currently broken, or what business metric you need to improve.
-2. Your approximate timeline.
+Email reda@whoax.com with:
+1. What you want built, what's broken, or the number you want to move.
+2. Your rough timeline.
 
-You will get a direct, honest evaluation within 24 hours. No 45-minute discovery sales pitches, no pushy sales decks, and no gatekeeping.`,
+You'll get a straight answer by email within 24 hours, without a discovery call or a sales deck.`,
     meta: {
-      timeline: "Available Now",
-      impact: "Direct reply within 24 hours · Clear fixed quotes · Honest advice",
+      timeline: "Available now",
+      impact: "Reply within 24 hours · Fixed quotes · Honest advice",
       liveUrl: "https://whoax.com",
     },
   },
@@ -744,7 +801,7 @@ export const NAVIGATION_TREE: FolderNode[] = [
     label: "projects",
     icon: "Folder",
     children: [
-      PORTFOLIO_FILES["project-ecommerce"],
+      PORTFOLIO_FILES["project-foody"],
       PORTFOLIO_FILES["project-voice"],
       PORTFOLIO_FILES["project-shopify-discord"],
       PORTFOLIO_FILES["project-api-integrations"],
@@ -772,7 +829,7 @@ export const FILE_SEQUENCE: string[] = [
   "voice-and-chat-agents",
   "marketing-seo-and-ads",
   "api-and-mcp-integrations",
-  "project-ecommerce",
+  "project-foody",
   "project-voice",
   "project-shopify-discord",
   "project-api-integrations",

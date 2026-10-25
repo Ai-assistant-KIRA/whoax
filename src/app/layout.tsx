@@ -39,13 +39,13 @@ const generalSans = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL("https://whoax.com"),
   referrer: "strict-origin-when-cross-origin",
-  title: "Reda Alaarabi · Senior Web & Systems Engineer | Websites, Apps & Voice Systems",
+  title: "Reda Alaarabi · Websites, Online Stores & AI Phone Assistants",
   description:
-    "Senior engineer building $10K-grade agency websites, custom web apps, Shopify & WooCommerce plugins, automated voice support agents, and growth infrastructure for businesses across all industries.",
+    "I build fast websites, web apps, Shopify and WooCommerce stores, and AI phone assistants for businesses. Seven years of work across ten industries, and you deal with me directly.",
   openGraph: {
-    title: "Reda Alaarabi · Senior Web & Systems Engineer",
+    title: "Reda Alaarabi · whoax.com",
     description:
-      "$10K-grade agency websites, custom web applications, eCommerce plugins, AI voice agents, and cloud systems engineered for real business revenue.",
+      "Fast websites, online stores and AI phone assistants for businesses, built and looked after by one engineer.",
     url: "https://whoax.com",
     siteName: "Reda Alaarabi · whoax.com",
     type: "website",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b0b0d",
+  themeColor: "#1c2225",
 };
 
 export default function RootLayout({
@@ -77,7 +77,7 @@ export default function RootLayout({
       <body className="min-h-full">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-sm focus:bg-signal focus:px-4 focus:py-2 focus:font-mono focus:text-sm focus:text-void"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-sm focus:bg-[#cbe3b3] focus:px-4 focus:py-2 focus:font-mono focus:text-sm focus:text-[#1c2225]"
         >
           Skip to content
         </a>
