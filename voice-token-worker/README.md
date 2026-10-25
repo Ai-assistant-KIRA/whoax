@@ -4,7 +4,7 @@ Gives the site's voice assistant a 30-second Deepgram token so the real API key 
 
 ## Deploy (Cloudflare free plan)
 
-1. Create a NEW Deepgram key with Member permissions (the old one is public and must be deleted).
+1. Create a dedicated Deepgram key with Member permissions for this worker.
 2. From this folder:
    ```
    npx wrangler login

@@ -49,6 +49,9 @@ function MeadowScene() {
       phase: THREE.MathUtils.randFloat(0, Math.PI * 2),
       spin: THREE.MathUtils.randFloat(0.04, 0.16),
       baseScale: THREE.MathUtils.randFloat(0.55, 1.35),
+      // Runs once per mount (guarded by the ref above), so the random color
+      // mix cannot change between renders.
+      // eslint-disable-next-line react-hooks/purity
       colorType: Math.random() > 0.65 ? 2 : Math.random() > 0.35 ? 1 : 0,
       ox: 0,
       oy: 0,

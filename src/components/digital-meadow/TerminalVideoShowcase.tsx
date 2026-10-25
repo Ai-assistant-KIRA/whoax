@@ -18,6 +18,44 @@ import type { VideoChapter } from "@/types/portfolio";
 
 type Chapter = VideoChapter;
 
+// Vendor-prefixed fullscreen and orientation APIs are still needed for older
+// iOS Safari and Android browsers. Type only the members this component uses.
+type VendorVideoElement = HTMLVideoElement & {
+  webkitDisplayingFullscreen?: boolean;
+  webkitEnterFullscreen?: () => void;
+  webkitExitFullscreen?: () => void;
+};
+
+type VendorElement = HTMLElement & {
+  webkitRequestFullscreen?: () => Promise<void> | void;
+  mozRequestFullScreen?: () => Promise<void> | void;
+  msRequestFullscreen?: () => Promise<void> | void;
+};
+
+type VendorDocument = Document & {
+  webkitFullscreenElement?: Element | null;
+  mozFullScreenElement?: Element | null;
+  msFullscreenElement?: Element | null;
+  webkitExitFullscreen?: () => void;
+  mozCancelFullScreen?: () => void;
+  msExitFullscreen?: () => void;
+};
+
+type VendorOrientation = ScreenOrientation & {
+  lock?: (orientation: "landscape" | "portrait") => Promise<void>;
+  unlock?: () => void;
+};
+
+type VendorScreen = Screen & {
+  orientation?: VendorOrientation;
+  lockOrientation?: (orientation: string) => void;
+  mozLockOrientation?: (orientation: string) => void;
+  msLockOrientation?: (orientation: string) => void;
+  unlockOrientation?: () => void;
+  mozUnlockOrientation?: () => void;
+  msUnlockOrientation?: () => void;
+};
+
 const DEFAULT_CHAPTERS: Chapter[] = [
   { label: "01 // LEAKS", sub: "Where sales slip away", timeSec: 0 },
   { label: "02 // ABOUT", sub: "Seven years in", timeSec: 8 },
@@ -141,15 +179,16 @@ export default function TerminalVideoShowcase({
   const lockLandscape = useCallback(async () => {
     if (typeof window === "undefined" || !window.screen) return;
     try {
-      const orientation = window.screen.orientation as any;
+      const screen = window.screen as VendorScreen;
+      const orientation = screen.orientation;
       if (orientation && typeof orientation.lock === "function") {
         await orientation.lock("landscape");
-      } else if ((window.screen as any).lockOrientation) {
-        (window.screen as any).lockOrientation("landscape");
-      } else if ((window.screen as any).mozLockOrientation) {
-        (window.screen as any).mozLockOrientation("landscape");
-      } else if ((window.screen as any).msLockOrientation) {
-        (window.screen as any).msLockOrientation("landscape");
+      } else if (screen.lockOrientation) {
+        screen.lockOrientation("landscape");
+      } else if (screen.mozLockOrientation) {
+        screen.mozLockOrientation("landscape");
+      } else if (screen.msLockOrientation) {
+        screen.msLockOrientation("landscape");
       }
     } catch (err) {
       console.debug("Landscape orientation lock not supported on this device:", err);
@@ -159,15 +198,16 @@ export default function TerminalVideoShowcase({
   const unlockOrientation = useCallback(() => {
     if (typeof window === "undefined" || !window.screen) return;
     try {
-      const orientation = window.screen.orientation as any;
+      const screen = window.screen as VendorScreen;
+      const orientation = screen.orientation;
       if (orientation && typeof orientation.unlock === "function") {
         orientation.unlock();
-      } else if ((window.screen as any).unlockOrientation) {
-        (window.screen as any).unlockOrientation();
-      } else if ((window.screen as any).mozUnlockOrientation) {
-        (window.screen as any).mozUnlockOrientation();
-      } else if ((window.screen as any).msUnlockOrientation) {
-        (window.screen as any).msUnlockOrientation();
+      } else if (screen.unlockOrientation) {
+        screen.unlockOrientation();
+      } else if (screen.mozUnlockOrientation) {
+        screen.mozUnlockOrientation();
+      } else if (screen.msUnlockOrientation) {
+        screen.msUnlockOrientation();
       }
     } catch (err) {
       console.debug("Orientation unlock:", err);
@@ -178,8 +218,8 @@ export default function TerminalVideoShowcase({
   useEffect(() => {
     const checkIsFs = () => {
       if (typeof document === "undefined") return false;
-      const doc = document as any;
-      const vid = videoRef.current as any;
+      const doc = document as VendorDocument;
+      const vid = videoRef.current as VendorVideoElement | null;
       return !!(
         doc.fullscreenElement ||
         doc.webkitFullscreenElement ||
@@ -197,13 +237,13 @@ export default function TerminalVideoShowcase({
       }
     };
 
-    const doc = document as any;
+    const doc = document as VendorDocument;
     doc.addEventListener("fullscreenchange", handleFsChange);
     doc.addEventListener("webkitfullscreenchange", handleFsChange);
     doc.addEventListener("mozfullscreenchange", handleFsChange);
     doc.addEventListener("MSFullscreenChange", handleFsChange);
 
-    const video = videoRef.current as any;
+    const video = videoRef.current as VendorVideoElement | null;
     const handleWebKitBegin = () => setIsFullscreen(true);
     const handleWebKitEnd = () => {
       setIsFullscreen(false);
@@ -228,9 +268,9 @@ export default function TerminalVideoShowcase({
   }, [unlockOrientation]);
 
   const toggleFullscreen = async () => {
-    const video = videoRef.current as any;
-    const wrapper = videoWrapperRef.current as any;
-    const doc = document as any;
+    const video = videoRef.current as VendorVideoElement | null;
+    const wrapper = videoWrapperRef.current as VendorElement | null;
+    const doc = document as VendorDocument;
 
     const isCurrentlyFs =
       isFullscreen ||
@@ -282,7 +322,7 @@ export default function TerminalVideoShowcase({
     const isIPhone =
       typeof navigator !== "undefined" &&
       (/iPhone|iPod/i.test(navigator.userAgent) ||
-        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1 && !(window as any).MSStream));
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1 && !(window as Window & { MSStream?: unknown }).MSStream));
 
     if (isIPhone && video && typeof video.webkitEnterFullscreen === "function") {
       try {
@@ -295,7 +335,7 @@ export default function TerminalVideoShowcase({
     }
 
     // 2. Element fullscreen on video screen wrapper (Android Chrome, iPad, Desktop)
-    const target = wrapper || video || containerRef.current;
+    const target = (wrapper ?? video ?? containerRef.current) as VendorElement | null;
     if (target) {
       const requestMethod =
         target.requestFullscreen ||
