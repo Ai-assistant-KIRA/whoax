@@ -10,6 +10,11 @@ updates:
       npm-minor-and-patch:
         patterns: ["*"]
         update-types: ["minor", "patch"]
+    # Major versions are evaluated by hand. This keeps automated PRs small and
+    # prevents a breaking upgrade from blocking unrelated patch releases.
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: "github-actions"
     directory: "/"
